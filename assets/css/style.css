@@ -13,8 +13,8 @@
   --color-focus: #0b6fd3;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: "Source Serif 4", Georgia, serif;
-  --content-gutter: 2rem;
-  --max-width: 1280px;
+  --content-gutter: clamp(1.25rem, 3vw, 3.5rem);
+  --max-width: 2160px;
   --nav-height: 64px;
   --radius: 8px;
   --shadow: 0 16px 40px rgba(23, 32, 42, 0.12);
@@ -428,12 +428,16 @@ main li {
   margin-bottom: 0.35rem;
 }
 
-.section-intro,
-.section-heading {
-  max-width: 1040px;
+.section-intro {
+  max-width: none;
+}
+
+.section-intro > h2 {
+  max-width: 1400px;
 }
 
 .section-heading {
+  max-width: 1400px;
   margin-bottom: 1.45rem;
 }
 
@@ -441,6 +445,10 @@ main li {
 .section-heading > p {
   color: var(--color-muted);
   font-size: 1.02rem;
+}
+
+.section-intro > p:not(.section-kicker) {
+  max-width: 1480px;
 }
 
 .stat-grid {
