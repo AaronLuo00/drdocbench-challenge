@@ -49,7 +49,7 @@
         <div class="hero-actions" aria-label="Challenge actions">
           <a class="btn btn-primary" href="#tracks">Explore the tracks</a>
           <a class="btn btn-secondary" href="#timeline">View timeline</a>
-          <a class="btn btn-ghost" href="https://www.2077ai.com/dataset-pages/drdocbench_export/drdocbench.html" target="_blank" rel="noopener">Benchmark homepage</a>
+          <a class="btn btn-ghost" href="#platform">EvalAI platform</a>
         </div>
       </div>
     </div>
@@ -74,16 +74,14 @@
     <section id="overview" class="section-intro">
       <p class="section-kicker">Why this challenge</p>
       <h2>Strong benchmark scores do not guarantee expert-level document understanding.</h2>
-      <p>Dr.DocBench is a difficulty-aware benchmark built around pages where strong document parsers disagree or fail. It covers dense tables, mathematical notation, music, reference works, technical manuals, multilingual content, irregular layouts, and cross-page structures.</p>
+      <p>Dr.DocBench is a difficulty-aware benchmark for expert-level document parsing, built from roughly 4,500 annotated pages across 52 subject domains. It targets difficult content such as chemistry notation, dense tables, musical scores, and long, structurally complex documents.</p>
       <div class="stat-grid" aria-label="Dr.DocBench dataset statistics">
-        <article class="stat-item"><strong>4,514</strong><span>annotated pages</span></article>
-        <article class="stat-item"><strong>312</strong><span>long documents</span></article>
-        <article class="stat-item"><strong>52</strong><span>BISAC domains</span></article>
-        <article class="stat-item"><strong>14</strong><span>written languages</span></article>
-        <article class="stat-item"><strong>70K+</strong><span>fine-grained annotations</span></article>
+        <article class="stat-item"><strong>~4,500</strong><span>annotated pages</span></article>
+        <article class="stat-item"><strong>52</strong><span>subject domains</span></article>
+        <article class="stat-item"><strong>2</strong><span>challenge tracks</span></article>
       </div>
       <div class="highlight-box">
-        <strong>Challenge objective.</strong> Move document parsing evaluation beyond easy OCR wins toward robust structure recovery, expert notation, and long-document consistency.
+        <strong>Challenge objective.</strong> Evaluate document parsing systems on genuinely difficult, expert-domain content and long, structurally complex documents.
       </div>
     </section>
 
@@ -91,7 +89,7 @@
       <div class="section-heading">
         <p class="section-kicker">Challenge scope</p>
         <h2>Two complementary tracks</h2>
-        <p>Teams may participate in either or both tracks. Each track has an independent leaderboard and award pool.</p>
+        <p>The shared task consists of two scored tracks aligned with the research themes of DocInsights 2026.</p>
       </div>
       <div class="track-grid">
         <article class="track-card track-primary">
@@ -99,9 +97,9 @@
           <h3>Document Parsing (Overall)</h3>
           <p>End-to-end structured extraction from difficult document pages, including text, tables, formulas, layout, and reading order.</p>
           <ul>
+            <li>Text, tables, formulas, layout, and reading order</li>
             <li>Per-document structured predictions</li>
-            <li>Expert-domain and multilingual content</li>
-            <li>Composite evaluation across parsing components</li>
+            <li>Composite Overall metric</li>
           </ul>
           <span class="status-badge">Official track</span>
         </article>
@@ -111,8 +109,8 @@
           <p>Tests whether systems preserve reading order and document structure as the usable context expands from individual pages to long document windows.</p>
           <ul>
             <li>Context windows from 1 to 15 pages</li>
-            <li>Reading-order robustness under scale</li>
-            <li>Cross-page structure and continuation handling</li>
+            <li>Reading-order accuracy as document length grows</li>
+            <li>Long-document structure robustness</li>
           </ul>
           <span class="status-badge">Official track</span>
         </article>
@@ -121,7 +119,7 @@
         <div>
           <p class="section-kicker">Optional spotlight</p>
           <h3>Sheet-music transcription</h3>
-          <p>Music notation remains an open failure mode for current systems. A non-ranked spotlight may be offered for MusicXML transcription without changing the two official leaderboards.</p>
+          <p>No evaluated model currently outperforms a null baseline on sheet-music transcription. This may be offered as an optional bonus spotlight outside the two scored tracks.</p>
         </div>
         <span class="status-badge status-muted">Not part of official ranking</span>
       </aside>
@@ -129,35 +127,34 @@
 
     <section id="dataset">
       <div class="section-heading">
-        <p class="section-kicker">Benchmark data</p>
-        <h2>Difficulty-aware, subject-diverse, and structurally rich</h2>
-        <p>Dr.DocBench concentrates evaluation on cases that expose current parsing limitations rather than uniformly sampling easy pages.</p>
+        <p class="section-kicker">Dataset</p>
+        <h2>Dr.DocBench Benchmark Dataset</h2>
+        <p>Dr.DocBench is a difficulty-aware benchmark for expert-level document parsing, built from roughly 4,500 annotated pages across 52 subject domains.</p>
       </div>
       <div class="feature-grid">
         <article class="feature-card">
           <span class="feature-index">01</span>
-          <h3>Expert-domain content</h3>
-          <p>Chemistry, medicine, law, design, games, reference works, music, and technical subjects introduce notation and layouts absent from ordinary OCR datasets.</p>
+          <h3>Expert-level document parsing</h3>
+          <p>The benchmark targets the gap between strong results on existing benchmarks and failures on genuinely difficult content.</p>
         </article>
         <article class="feature-card">
           <span class="feature-index">02</span>
-          <h3>Complex structures</h3>
-          <p>Dense and borderless tables, formulas, rotated text, multi-column reading order, cross-page continuation, and hierarchical layout are explicitly represented.</p>
+          <h3>Subject-domain coverage</h3>
+          <p>The dataset covers 52 subject domains.</p>
         </article>
         <article class="feature-card">
           <span class="feature-index">03</span>
-          <h3>Fine-grained supervision</h3>
-          <p>Annotations support layout, recognition, reading order, and domain-specific structures for both overall evaluation and diagnostic analysis.</p>
+          <h3>Difficult document content</h3>
+          <p>Examples include chemistry notation, dense tables, musical scores, and long, structurally complex documents.</p>
         </article>
       </div>
       <div class="action-band">
         <div>
-          <h3>Learn more about Dr.DocBench</h3>
-          <p>Review the public benchmark overview, evaluation findings, and citation information.</p>
+          <h3>Challenge Data and Evaluation Resources</h3>
+          <p>A small public sample and confirmation of the private held-out test set will follow on a committed timeline.</p>
         </div>
         <div class="action-band-actions">
-          <a class="btn btn-secondary" href="https://www.2077ai.com/dataset-pages/drdocbench_export/drdocbench.html" target="_blank" rel="noopener">Open benchmark homepage</a>
-          <span class="btn btn-disabled" aria-disabled="true">Challenge data: coming soon</span>
+          <span class="btn btn-disabled" aria-disabled="true">Release details: TBA</span>
         </div>
       </div>
     </section>
@@ -165,27 +162,27 @@
     <section id="evaluation">
       <div class="section-heading">
         <p class="section-kicker">Evaluation</p>
-        <h2>Transparent component metrics, final ranking details to follow</h2>
-        <p>The evaluation dimensions are confirmed. The precise Overall aggregation for Track 1 and final ranking aggregation for Track 2 will be published with the evaluation kit.</p>
+        <h2>Evaluation Framework</h2>
+        <p>Track 1 uses the Dr.DocBench composite Overall metric. Track 2 evaluates long-document reading-order and structure robustness. Additional evaluation details are TBA.</p>
       </div>
       <div class="evaluation-grid">
         <article class="evaluation-card">
           <div class="track-label">Track 1 metrics</div>
           <dl class="metric-list">
-            <div><dt>Text Edit Distance</dt><dd>Normalized Levenshtein distance; lower is better.</dd></div>
-            <div><dt>Table TEDS</dt><dd>Structure and content similarity for parsed tables; higher is better.</dd></div>
-            <div><dt>Formula CDM</dt><dd>Character detection matching for mathematical formulas; higher is better.</dd></div>
-            <div><dt>Reading Order</dt><dd>Sequence accuracy derived from normalized edit distance.</dd></div>
+            <div><dt>Text Edit Distance</dt><dd>Included in the Track 1 composite Overall metric.</dd></div>
+            <div><dt>Table TEDS</dt><dd>Included in the Track 1 composite Overall metric.</dd></div>
+            <div><dt>Formula CDM</dt><dd>Included in the Track 1 composite Overall metric.</dd></div>
+            <div><dt>Overall aggregation</dt><dd>TBA</dd></div>
           </dl>
           <div class="tba-note"><strong>Overall formula:</strong> TBA with the evaluation release.</div>
         </article>
         <article class="evaluation-card">
           <div class="track-label">Track 2 protocol</div>
           <dl class="metric-list">
-            <div><dt>Context scale</dt><dd>Evaluation across document windows ranging from 1 to 15 pages.</dd></div>
-            <div><dt>Primary capability</dt><dd>Reading-order and structural consistency as context grows.</dd></div>
-            <div><dt>Diagnostic reporting</dt><dd>Performance curves across context-window sizes.</dd></div>
-            <div><dt>Final ranking</dt><dd>Aggregation rule will be released before submissions open.</dd></div>
+            <div><dt>Task objective</dt><dd>Evaluate whether systems maintain accurate reading order and structure as document length grows.</dd></div>
+            <div><dt>Context scale</dt><dd>Document context expands from 1 to 15 pages.</dd></div>
+            <div><dt>Evaluation protocol</dt><dd>TBA</dd></div>
+            <div><dt>Final ranking</dt><dd>TBA</dd></div>
           </dl>
           <div class="tba-note"><strong>Ranking formula:</strong> TBA with the evaluation release.</div>
         </article>
@@ -199,10 +196,10 @@
         <p>Exact challenge dates will be announced after alignment with the DocInsights and EMNLP schedules.</p>
       </div>
       <div class="timeline-grid">
-        <article class="timeline-card"><span>01</span><h3>Sample data release</h3><p>Coming soon</p></article>
-        <article class="timeline-card"><span>02</span><h3>Submission opening</h3><p>Coming soon</p></article>
-        <article class="timeline-card"><span>03</span><h3>Submission deadline</h3><p>Coming soon</p></article>
-        <article class="timeline-card"><span>04</span><h3>Final evaluation</h3><p>Coming soon</p></article>
+        <article class="timeline-card"><span>01</span><h3>Sample data release</h3><p>TBA</p></article>
+        <article class="timeline-card"><span>02</span><h3>Submission opening</h3><p>TBA</p></article>
+        <article class="timeline-card"><span>03</span><h3>Submission deadline</h3><p>TBA</p></article>
+        <article class="timeline-card"><span>04</span><h3>Final evaluation</h3><p>TBA</p></article>
         <article class="timeline-card timeline-highlight"><span>05</span><h3>DocInsights workshop</h3><p>EMNLP 2026, October 24-29<br>Budapest, Hungary</p></article>
       </div>
     </section>
@@ -225,10 +222,10 @@
         <div class="platform-mark" aria-hidden="true">E</div>
         <div class="platform-copy">
           <p class="section-kicker">Evaluation platform</p>
-          <h2>Submissions and evaluation will run on EvalAI</h2>
-          <p>EvalAI will host the public validation phase, private held-out final evaluation, submission status, and challenge leaderboards. The dedicated challenge page is being configured and will be linked here when it is ready.</p>
+          <h2>EvalAI Evaluation Platform</h2>
+          <p>EvalAI will provide a public validation leaderboard and a private test-phase leaderboard.</p>
         </div>
-        <span class="btn btn-disabled" aria-disabled="true">EvalAI challenge page: coming soon</span>
+        <span class="btn btn-disabled" aria-disabled="true">EvalAI challenge page: TBA</span>
       </div>
     </section>
 
@@ -236,45 +233,41 @@
       <div class="section-heading">
         <p class="section-kicker">How it works</p>
         <h2>Participation flow</h2>
-        <p>The challenge follows the proven release, validation, private evaluation, and workshop-results workflow used by the organizing team.</p>
+        <p>The challenge follows the proposed data release, submission window, leaderboard, and results workshop format.</p>
       </div>
       <ol class="flow-list">
-        <li><span>1</span><div><h3>Download the release</h3><p>Review sample data, identifiers, submission examples, and the evaluation protocol.</p></div></li>
-        <li><span>2</span><div><h3>Validate predictions</h3><p>Submit to the public validation phase and resolve schema or alignment errors.</p></div></li>
-        <li><span>3</span><div><h3>Run final evaluation</h3><p>Select final submissions for evaluation on the private held-out test set.</p></div></li>
-        <li><span>4</span><div><h3>Publish the leaderboard</h3><p>Final rankings are determined independently for the two official tracks.</p></div></li>
-        <li><span>5</span><div><h3>Present at DocInsights</h3><p>Top teams provide system descriptions and share findings with the workshop community.</p></div></li>
+        <li><span>1</span><div><h3>Data release</h3><p>A small public sample will be released.</p></div></li>
+        <li><span>2</span><div><h3>Submission window</h3><p>Submissions will be hosted on EvalAI.</p></div></li>
+        <li><span>3</span><div><h3>Public validation</h3><p>EvalAI will provide a public validation leaderboard.</p></div></li>
+        <li><span>4</span><div><h3>Private test phase</h3><p>Final evaluation will use a private test-phase leaderboard.</p></div></li>
+        <li><span>5</span><div><h3>Results workshop</h3><p>Challenge results will be presented at DocInsights 2026.</p></div></li>
       </ol>
     </section>
 
     <section id="submission">
       <div class="section-heading">
         <p class="section-kicker">Submission</p>
-        <h2>Per-document structured predictions</h2>
-        <p>Predictions will be matched to ground-truth document IDs. The exact extension, schema, archive layout, and validation rules will be released with sample files.</p>
+        <h2>Submission Format</h2>
+        <p>Submissions will use per-document structured predictions matched to ground-truth IDs. The exact specification will follow.</p>
       </div>
       <div class="submission-grid">
         <article class="submission-card">
-          <h3>Planned archive concept</h3>
-          <pre aria-label="Illustrative submission archive structure"><code>submission.zip
-└── predictions/
-    ├── &lt;document_id_001&gt;.&lt;format-tba&gt;
-    ├── &lt;document_id_002&gt;.&lt;format-tba&gt;
-    └── ...</code></pre>
-          <p>This diagram is illustrative only. It is not yet the final submission specification.</p>
+          <h3>Required prediction structure</h3>
+          <div class="tba-note"><strong>Per-document file format and schema:</strong> TBA</div>
+          <div class="tba-note"><strong>Archive layout:</strong> TBA</div>
+          <div class="tba-note"><strong>Ground-truth ID alignment rules:</strong> TBA</div>
         </article>
         <article class="submission-card submission-status">
           <h3>Release checklist</h3>
           <ul class="check-list">
-            <li><span>Pending</span> Exact prediction schema</li>
-            <li><span>Pending</span> Submission ZIP example</li>
-            <li><span>Pending</span> Validation rules</li>
-            <li><span>Pending</span> EvalAI challenge link</li>
-            <li><span>Pending</span> Daily and final submission limits</li>
+            <li><span>TBA</span> Exact prediction schema</li>
+            <li><span>TBA</span> Submission example</li>
+            <li><span>TBA</span> Validation rules</li>
+            <li><span>TBA</span> EvalAI challenge link</li>
           </ul>
           <div class="disabled-actions">
-            <span class="btn btn-disabled" aria-disabled="true">Format examples: coming soon</span>
-            <span class="btn btn-disabled" aria-disabled="true">EvalAI challenge page: coming soon</span>
+            <span class="btn btn-disabled" aria-disabled="true">Format examples: TBA</span>
+            <span class="btn btn-disabled" aria-disabled="true">EvalAI challenge page: TBA</span>
           </div>
         </article>
       </div>
@@ -284,26 +277,26 @@
       <div class="section-heading">
         <p class="section-kicker">Results</p>
         <h2>Leaderboards</h2>
-        <p>Tables are ready for future result data. Rankings will remain empty until the validation phase opens.</p>
+        <p>EvalAI will provide a public validation leaderboard and a private test-phase leaderboard. Display details are TBA.</p>
       </div>
       <div class="leaderboard-stack">
         <article class="leaderboard-card">
-          <div class="leaderboard-header"><div><span>Track 1</span><h3>Document Parsing (Overall)</h3></div><span class="status-badge status-muted">Not open</span></div>
+          <div class="leaderboard-header"><div><span>Track 1</span><h3>Document Parsing (Overall)</h3></div><span class="status-badge status-muted">TBA</span></div>
           <div class="table-scroll" tabindex="0" aria-label="Scrollable Track 1 leaderboard">
             <table>
               <caption>Track 1 leaderboard</caption>
-              <thead><tr><th>Rank</th><th>Team</th><th>Text ED</th><th>Table TEDS</th><th>Formula CDM</th><th>Reading Order</th><th>Overall</th></tr></thead>
-              <tbody><tr class="empty-row"><td colspan="7">No submissions yet. Validation leaderboard coming soon.</td></tr></tbody>
+              <thead><tr><th>Rank</th><th>Team</th><th>Text ED</th><th>Table TEDS</th><th>Formula CDM</th><th>Overall</th></tr></thead>
+              <tbody><tr class="empty-row"><td colspan="6">TBA</td></tr></tbody>
             </table>
           </div>
         </article>
         <article class="leaderboard-card">
-          <div class="leaderboard-header"><div><span>Track 2</span><h3>Long-Document Robustness</h3></div><span class="status-badge status-muted">Not open</span></div>
+          <div class="leaderboard-header"><div><span>Track 2</span><h3>Long-Document Robustness</h3></div><span class="status-badge status-muted">TBA</span></div>
           <div class="table-scroll" tabindex="0" aria-label="Scrollable Track 2 leaderboard">
             <table>
               <caption>Track 2 leaderboard</caption>
-              <thead><tr><th>Rank</th><th>Team</th><th>Context Range</th><th>Reading Order</th><th>Robustness Score</th></tr></thead>
-              <tbody><tr class="empty-row"><td colspan="5">No submissions yet. Ranking protocol coming soon.</td></tr></tbody>
+              <thead><tr><th>Rank</th><th>Team</th><th>Final Score</th></tr></thead>
+              <tbody><tr class="empty-row"><td colspan="3">TBA</td></tr></tbody>
             </table>
           </div>
         </article>
@@ -312,41 +305,28 @@
 
     <section id="rules">
       <div class="section-heading">
-        <p class="section-kicker">Participation policy</p>
-        <h2>Rules and team requirements</h2>
+        <p class="section-kicker">Rules</p>
+        <h2>Participation Rules</h2>
+        <p>Detailed participation rules are TBA.</p>
       </div>
-      <div class="rule-grid">
-        <article><h3>Eligibility</h3><p>Open to research and industry teams worldwide. Final team-size and affiliation rules will be confirmed before submissions open.</p></article>
-        <article><h3>External data</h3><p>Teams must disclose external training data, proprietary APIs, ensembles, and any additional model resources used.</p></article>
-        <article><h3>System descriptions</h3><p>Top-ranked teams will be asked to provide a concise technical description sufficient to understand and reproduce the approach.</p></article>
-        <article><h3>Workshop participation</h3><p>Top teams may be invited to present their systems and diagnostic findings during the DocInsights workshop.</p></article>
-        <article><h3>Submission limits</h3><p>Daily limits and the number of final submissions will be announced with the EvalAI configuration.</p></article>
-        <article><h3>Final authority</h3><p>The released evaluation specification and platform timestamps will be the systems of record for challenge decisions.</p></article>
-      </div>
+      <div class="highlight-box"><strong>TBA.</strong> The complete challenge rules will be published before submissions open.</div>
     </section>
 
     <section id="faq">
       <div class="section-heading">
-        <p class="section-kicker">Frequently asked questions</p>
-        <h2>What participants should know now</h2>
+        <p class="section-kicker">FAQ</p>
+        <h2>Frequently Asked Questions</h2>
       </div>
-      <div class="faq-list">
-        <details><summary>Can a team enter both tracks?</summary><p>Yes. The tracks have independent leaderboards and awards, and teams may participate in either or both.</p></details>
-        <details><summary>Are the evaluation formulas final?</summary><p>The evaluation dimensions are confirmed, but the Track 1 Overall formula and Track 2 ranking aggregation will be released with the evaluation kit.</p></details>
-        <details><summary>When will data and submissions open?</summary><p>The exact sample-release and submission dates are being aligned with the workshop schedule and will be announced here.</p></details>
-        <details><summary>Is sheet-music transcription a ranked track?</summary><p>No. It is currently planned only as an optional, non-ranked spotlight outside the two official tracks.</p></details>
-        <details><summary>Will there be a public validation leaderboard?</summary><p>Yes. The planned platform flow includes public validation and a private held-out final evaluation.</p></details>
-        <details><summary>Where should questions be sent?</summary><p>Email the DocInsights workshop chairs. Platform-specific support details will be added when EvalAI opens.</p></details>
-      </div>
+      <div class="highlight-box"><strong>TBA</strong></div>
     </section>
 
     <section class="contact-band" aria-labelledby="contact-title">
       <div>
         <p class="section-kicker">Contact</p>
-        <h2 id="contact-title">Questions about the Dr.DocBench Challenge?</h2>
-        <p>Contact the DocInsights organizing team and watch this page for data, evaluation, and submission announcements.</p>
+        <h2 id="contact-title">Challenge Contact</h2>
+        <p>TBA</p>
       </div>
-      <a class="btn btn-ghost" href="mailto:docinsights-workshop-chairs@googlegroups.com">Email the organizers</a>
+      <span class="btn btn-disabled" aria-disabled="true">Contact details: TBA</span>
     </section>
   </main>
 
@@ -377,8 +357,8 @@
       <div>
         <h3>Resources</h3>
         <ul>
-          <li><a href="https://www.2077ai.com/dataset-pages/drdocbench_export/drdocbench.html" target="_blank" rel="noopener">Dr.DocBench</a></li>
-          <li><a href="mailto:docinsights-workshop-chairs@googlegroups.com">Contact</a></li>
+          <li>Challenge data: TBA</li>
+          <li>Contact: TBA</li>
         </ul>
       </div>
     </div>

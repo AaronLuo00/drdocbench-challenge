@@ -98,7 +98,7 @@ summary {
 .nav-container,
 .section-nav-inner,
 .challenge-hero-inner {
-  width: min(calc(100% - (var(--content-gutter) * 2)), var(--max-width));
+  width: min(calc(100% - var(--content-gutter) - var(--content-gutter)), var(--max-width));
   margin-inline: auto;
 }
 
@@ -453,7 +453,7 @@ main li {
 
 .stat-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   margin-top: 1.8rem;
   border-block: 1px solid var(--color-line);
