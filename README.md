@@ -2,10 +2,7 @@
 
 Standalone website for the Dr.DocBench Challenge, a shared task at DocInsights 2026 co-located with EMNLP 2026 in Budapest, Hungary.
 
-The challenge includes two official tracks:
-
-- Document Parsing (Overall)
-- Long-Document Robustness
+The challenge includes one official track: Document Parsing.
 
 ## Local preview
 

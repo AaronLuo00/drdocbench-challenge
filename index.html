@@ -45,9 +45,9 @@
         <h1 id="challenge-title">Dr.DocBench Challenge</h1>
         <p class="challenge-subtitle">Expert-level document parsing under real difficulty</p>
         <p class="challenge-location">Co-located with EMNLP 2026 - Budapest, Hungary</p>
-        <p class="challenge-summary">Two tracks evaluate structured document extraction and long-document robustness on difficult, expert-domain content where modern parsing systems still struggle.</p>
+        <p class="challenge-summary">The challenge evaluates structured document extraction on difficult, expert-domain content where modern parsing systems still struggle.</p>
         <div class="hero-actions" aria-label="Challenge actions">
-          <a class="btn btn-primary" href="#tracks">Explore the tracks</a>
+          <a class="btn btn-primary" href="#tracks">Explore the track</a>
           <a class="btn btn-secondary" href="#timeline">View timeline</a>
           <a class="btn btn-ghost" href="#platform">EvalAI platform</a>
         </div>
@@ -58,7 +58,7 @@
   <div class="section-nav" aria-label="Challenge page sections">
     <div class="section-nav-inner">
       <a href="#overview">Overview</a>
-      <a href="#tracks">Tracks</a>
+      <a href="#tracks">Track</a>
       <a href="#dataset">Dataset</a>
       <a href="#evaluation">Evaluation</a>
       <a href="#timeline">Timeline</a>
@@ -74,27 +74,27 @@
     <section id="overview" class="section-intro">
       <p class="section-kicker">Why this challenge</p>
       <h2>Expert-Level Document Parsing</h2>
-      <p>Dr.DocBench is a difficulty-aware benchmark for expert-level document parsing, built from roughly 4,500 annotated pages across 52 subject domains. It targets difficult content such as chemistry notation, dense tables, musical scores, and long, structurally complex documents.</p>
+      <p>Dr.DocBench is a difficulty-aware benchmark for expert-level document parsing, built from roughly 4,500 annotated pages across 52 subject domains. It targets difficult content such as chemistry notation, dense tables, mathematical formulas, irregular layouts, and complex reading order.</p>
       <div class="stat-grid" aria-label="Dr.DocBench dataset statistics">
         <article class="stat-item"><strong>~4,500</strong><span>annotated pages</span></article>
         <article class="stat-item"><strong>52</strong><span>subject domains</span></article>
-        <article class="stat-item"><strong>2</strong><span>challenge tracks</span></article>
+        <article class="stat-item"><strong>1</strong><span>official challenge track</span></article>
       </div>
       <div class="highlight-box">
-        <strong>Challenge objective.</strong> Evaluate document parsing systems on genuinely difficult, expert-domain content and long, structurally complex documents.
+        <strong>Challenge objective.</strong> Evaluate document parsing systems on genuinely difficult, expert-domain content and structurally complex documents.
       </div>
     </section>
 
     <section id="tracks">
       <div class="section-heading">
         <p class="section-kicker">Challenge scope</p>
-        <h2>Two complementary tracks</h2>
-        <p>The shared task consists of two scored tracks aligned with the research themes of DocInsights 2026.</p>
+        <h2>Document Parsing</h2>
+        <p>The shared task consists of one official scored track for end-to-end document parsing.</p>
       </div>
-      <div class="track-grid">
+      <div class="track-grid single-column-grid">
         <article class="track-card track-primary">
-          <div class="track-label">Track 1</div>
-          <h3>Document Parsing (Overall)</h3>
+          <div class="track-label">Official track</div>
+          <h3>Document Parsing</h3>
           <p>End-to-end structured extraction from difficult document pages, including text, tables, formulas, layout, and reading order.</p>
           <ul>
             <li>Text, tables, formulas, layout, and reading order</li>
@@ -103,26 +103,7 @@
           </ul>
           <span class="status-badge">Official track</span>
         </article>
-        <article class="track-card track-secondary">
-          <div class="track-label">Track 2</div>
-          <h3>Long-Document Robustness</h3>
-          <p>Tests whether systems preserve reading order and document structure as the usable context expands from individual pages to long document windows.</p>
-          <ul>
-            <li>Context windows from 1 to 15 pages</li>
-            <li>Reading-order accuracy as document length grows</li>
-            <li>Long-document structure robustness</li>
-          </ul>
-          <span class="status-badge">Official track</span>
-        </article>
       </div>
-      <aside class="spotlight-panel">
-        <div>
-          <p class="section-kicker">Optional spotlight</p>
-          <h3>Sheet-music transcription</h3>
-          <p>No evaluated model currently outperforms a null baseline on sheet-music transcription. This may be offered as an optional bonus spotlight outside the two scored tracks.</p>
-        </div>
-        <span class="status-badge status-muted">Not part of official ranking</span>
-      </aside>
     </section>
 
     <section id="dataset">
@@ -145,7 +126,7 @@
         <article class="feature-card">
           <span class="feature-index">03</span>
           <h3>Difficult document content</h3>
-          <p>Examples include chemistry notation, dense tables, musical scores, and long, structurally complex documents.</p>
+          <p>Examples include chemistry notation, dense tables, mathematical formulas, irregular layouts, and complex reading order.</p>
         </article>
       </div>
       <div class="action-band">
@@ -163,28 +144,19 @@
       <div class="section-heading">
         <p class="section-kicker">Evaluation</p>
         <h2>Evaluation Framework</h2>
-        <p>Track 1 uses the Dr.DocBench composite Overall metric. Track 2 evaluates long-document reading-order and structure robustness. Additional evaluation details are TBA.</p>
+        <p>The Document Parsing track uses the Dr.DocBench composite Overall metric. Additional evaluation details are TBA.</p>
       </div>
-      <div class="evaluation-grid">
+      <div class="evaluation-grid single-column-grid">
         <article class="evaluation-card">
-          <div class="track-label">Track 1 metrics</div>
+          <div class="track-label">Document Parsing metrics</div>
           <dl class="metric-list">
-            <div><dt>Text Edit Distance</dt><dd>Included in the Track 1 composite Overall metric.</dd></div>
-            <div><dt>Table TEDS</dt><dd>Included in the Track 1 composite Overall metric.</dd></div>
-            <div><dt>Formula CDM</dt><dd>Included in the Track 1 composite Overall metric.</dd></div>
+            <div><dt>Text Edit Distance</dt><dd>Measures text-recognition accuracy; lower is better.</dd></div>
+            <div><dt>Table TEDS</dt><dd>Measures table structure and content similarity; higher is better.</dd></div>
+            <div><dt>Formula CDM</dt><dd>Measures formula recognition with character detection matching; higher is better.</dd></div>
+            <div><dt>Reading Order</dt><dd>Measures the recovered sequence of document elements; higher is better.</dd></div>
             <div><dt>Overall aggregation</dt><dd>TBA</dd></div>
           </dl>
           <div class="tba-note"><strong>Overall formula:</strong> TBA with the evaluation release.</div>
-        </article>
-        <article class="evaluation-card">
-          <div class="track-label">Track 2 protocol</div>
-          <dl class="metric-list">
-            <div><dt>Task objective</dt><dd>Evaluate whether systems maintain accurate reading order and structure as document length grows.</dd></div>
-            <div><dt>Context scale</dt><dd>Document context expands from 1 to 15 pages.</dd></div>
-            <div><dt>Evaluation protocol</dt><dd>TBA</dd></div>
-            <div><dt>Final ranking</dt><dd>TBA</dd></div>
-          </dl>
-          <div class="tba-note"><strong>Ranking formula:</strong> TBA with the evaluation release.</div>
         </article>
       </div>
     </section>
@@ -207,13 +179,13 @@
     <section id="awards">
       <div class="section-heading">
         <p class="section-kicker">Awards</p>
-        <h2>Prizes for each official track</h2>
-        <p>Track 1 and Track 2 each have an independent prize pool.</p>
+        <h2>Document Parsing awards</h2>
+        <p>The top three teams in the official Document Parsing track will receive awards.</p>
       </div>
       <div class="award-grid">
-        <article class="award-card award-first"><span>1st place</span><strong>&#36;1,000</strong><p>per track</p></article>
-        <article class="award-card"><span>2nd place</span><strong>&#36;500</strong><p>per track</p></article>
-        <article class="award-card"><span>3rd place</span><strong>&#36;300</strong><p>per track</p></article>
+        <article class="award-card award-first"><span>1st place</span><strong>&#36;1,000</strong><p>Document Parsing</p></article>
+        <article class="award-card"><span>2nd place</span><strong>&#36;500</strong><p>Document Parsing</p></article>
+        <article class="award-card"><span>3rd place</span><strong>&#36;300</strong><p>Document Parsing</p></article>
       </div>
     </section>
 
@@ -276,27 +248,17 @@
     <section id="leaderboard">
       <div class="section-heading">
         <p class="section-kicker">Results</p>
-        <h2>Leaderboards</h2>
+        <h2>Leaderboard</h2>
         <p>EvalAI will provide a public validation leaderboard and a private test-phase leaderboard. Display details are TBA.</p>
       </div>
       <div class="leaderboard-stack">
         <article class="leaderboard-card">
-          <div class="leaderboard-header"><div><span>Track 1</span><h3>Document Parsing (Overall)</h3></div><span class="status-badge status-muted">TBA</span></div>
-          <div class="table-scroll" tabindex="0" aria-label="Scrollable Track 1 leaderboard">
+          <div class="leaderboard-header"><div><span>Official track</span><h3>Document Parsing</h3></div><span class="status-badge status-muted">TBA</span></div>
+          <div class="table-scroll" tabindex="0" aria-label="Scrollable Document Parsing leaderboard">
             <table>
-              <caption>Track 1 leaderboard</caption>
-              <thead><tr><th>Rank</th><th>Team</th><th>Text ED</th><th>Table TEDS</th><th>Formula CDM</th><th>Overall</th></tr></thead>
-              <tbody><tr class="empty-row"><td colspan="6">TBA</td></tr></tbody>
-            </table>
-          </div>
-        </article>
-        <article class="leaderboard-card">
-          <div class="leaderboard-header"><div><span>Track 2</span><h3>Long-Document Robustness</h3></div><span class="status-badge status-muted">TBA</span></div>
-          <div class="table-scroll" tabindex="0" aria-label="Scrollable Track 2 leaderboard">
-            <table>
-              <caption>Track 2 leaderboard</caption>
-              <thead><tr><th>Rank</th><th>Team</th><th>Final Score</th></tr></thead>
-              <tbody><tr class="empty-row"><td colspan="3">TBA</td></tr></tbody>
+              <caption>Document Parsing leaderboard</caption>
+              <thead><tr><th>Rank</th><th>Team</th><th>Text ED</th><th>Table TEDS</th><th>Formula CDM</th><th>Reading Order</th><th>Overall</th></tr></thead>
+              <tbody><tr class="empty-row"><td colspan="7">TBA</td></tr></tbody>
             </table>
           </div>
         </article>
@@ -340,7 +302,7 @@
       <div>
         <h3>Challenge</h3>
         <ul>
-          <li><a href="#tracks">Tracks</a></li>
+          <li><a href="#tracks">Track</a></li>
           <li><a href="#evaluation">Evaluation</a></li>
           <li><a href="#submission">Submission</a></li>
           <li><a href="#leaderboard">Leaderboard</a></li>
