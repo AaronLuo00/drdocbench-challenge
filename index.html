@@ -43,9 +43,9 @@
       <div class="challenge-hero-copy">
         <p class="eyebrow">Shared task at DocInsights 2026</p>
         <h1 id="challenge-title">Dr.DocBench Challenge</h1>
-        <p class="challenge-subtitle">Expert-level document parsing under real difficulty</p>
+        <p class="challenge-subtitle">Expert-Level Document Parsing Challenge</p>
         <p class="challenge-location">Co-located with EMNLP 2026 - Budapest, Hungary</p>
-        <p class="challenge-summary">The challenge evaluates structured document extraction on difficult, expert-domain content where modern parsing systems still struggle.</p>
+        <p class="challenge-summary">Recover structured content from difficult document pages across text, tables, formulas, reading order, document structure, and specialized notation.</p>
         <div class="hero-actions" aria-label="Challenge actions">
           <a class="btn btn-primary" href="#tracks">Explore the track</a>
           <a class="btn btn-secondary" href="#timeline">View timeline</a>
@@ -58,7 +58,7 @@
   <div class="section-nav" aria-label="Challenge page sections">
     <div class="section-nav-inner">
       <a href="#overview">Overview</a>
-      <a href="#tracks">Track</a>
+      <a href="#tracks">Task</a>
       <a href="#dataset">Dataset</a>
       <a href="#evaluation">Evaluation</a>
       <a href="#timeline">Timeline</a>
@@ -74,13 +74,13 @@
     <section id="overview" class="section-intro">
       <p class="section-kicker">Why this challenge</p>
       <h2>Expert-Level Document Parsing</h2>
-      <p>The Dr.DocBench Challenge evaluates around 1,000 pages selected for expert-level document parsing. It targets difficult content such as chemistry notation, dense tables, mathematical formulas, irregular layouts, and complex reading order.</p>
+      <p>The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. Based on Dr.DocBench, it uses a dedicated subset of around 1,000 pages selected around cases where strong document parsers struggle.</p>
       <div class="stat-grid stat-grid-two" aria-label="Dr.DocBench Challenge statistics">
         <article class="stat-item"><strong>~1,000</strong><span>challenge pages</span></article>
-        <article class="stat-item"><strong>1</strong><span>official challenge track</span></article>
+        <article class="stat-item"><strong>1</strong><span>official challenge task</span></article>
       </div>
       <div class="highlight-box">
-        <strong>Challenge objective.</strong> Evaluate document parsing systems on genuinely difficult, expert-domain content and structurally complex documents.
+        <strong>Challenge objective.</strong> Recover structured content from complex document pages while preserving text, tables, formulas, reading order, document structure, and specialized notation.
       </div>
     </section>
 
@@ -88,19 +88,19 @@
       <div class="section-heading">
         <p class="section-kicker">Challenge scope</p>
         <h2>Document Parsing</h2>
-        <p>The shared task consists of one official scored track for end-to-end document parsing.</p>
+        <p>The shared task consists of one official task for end-to-end expert-level document parsing.</p>
       </div>
       <div class="track-grid single-column-grid">
         <article class="track-card track-primary">
-          <div class="track-label">Official track</div>
-          <h3>Document Parsing</h3>
-          <p>End-to-end structured extraction from difficult document pages, including text, tables, formulas, layout, and reading order.</p>
+          <div class="track-label">Official task</div>
+          <h3>Expert-Level Document Parsing</h3>
+          <p>Participants convert difficult document images into structured Markdown while preserving:</p>
           <ul>
-            <li>Text, tables, formulas, layout, and reading order</li>
-            <li>Per-document structured predictions</li>
-            <li>Composite Overall metric</li>
+            <li>Original-language text and document structure</li>
+            <li>Structured HTML tables and LaTeX formulas</li>
+            <li>Reading order, chemistry notation, and musical notation</li>
           </ul>
-          <span class="status-badge">Official track</span>
+          <span class="status-badge">Official task</span>
         </article>
       </div>
     </section>
@@ -109,24 +109,24 @@
       <div class="section-heading">
         <p class="section-kicker">Dataset</p>
         <h2>Dr.DocBench Challenge Dataset</h2>
-        <p>The challenge uses around 1,000 pages selected for difficulty-aware evaluation of expert-level document parsing.</p>
+        <p>The challenge uses a dedicated subset of around 1,000 Dr.DocBench pages prepared for expert-level document parsing. Public development data will be released through Hugging Face.</p>
       </div>
       <div class="feature-grid two-column-grid">
         <article class="feature-card">
           <span class="feature-index">01</span>
-          <h3>Expert-level document parsing</h3>
-          <p>The benchmark targets the gap between strong results on existing benchmarks and failures on genuinely difficult content.</p>
+          <h3>Difficulty-aware selection</h3>
+          <p>The challenge data concentrates on cases where strong document parsers disagree or fail.</p>
         </article>
         <article class="feature-card">
           <span class="feature-index">02</span>
-          <h3>Difficult document content</h3>
-          <p>Examples include chemistry notation, dense tables, mathematical formulas, irregular layouts, and complex reading order.</p>
+          <h3>Complex structured content</h3>
+          <p>Content includes dense tables, formulas, irregular layouts, reading order, chemistry notation, and musical notation.</p>
         </article>
       </div>
       <div class="action-band">
         <div>
           <h3>Challenge Data and Evaluation Resources</h3>
-          <p>A small public sample and confirmation of the private held-out test set will follow on a committed timeline.</p>
+          <p>The Hugging Face dataset link, documentation, and final release details will be added when available.</p>
         </div>
         <div class="action-band-actions">
           <span class="btn btn-disabled" aria-disabled="true">Release details: TBA</span>
@@ -138,7 +138,7 @@
       <div class="section-heading">
         <p class="section-kicker">Evaluation</p>
         <h2>Evaluation Framework</h2>
-        <p>The Document Parsing track uses the Dr.DocBench composite Overall metric. Additional evaluation details are TBA.</p>
+        <p>Submissions will be evaluated using document-parsing metrics aligned with Dr.DocBench. The proposed metrics are shown below; the final metric set and aggregation formula will be published with the evaluator.</p>
       </div>
       <div class="evaluation-grid single-column-grid">
         <article class="evaluation-card">
@@ -146,9 +146,9 @@
           <dl class="metric-list">
             <div><dt>Text Edit Distance</dt><dd>Measures text-recognition accuracy; lower is better.</dd></div>
             <div><dt>Table TEDS</dt><dd>Measures table structure and content similarity; higher is better.</dd></div>
-            <div><dt>Formula CDM</dt><dd>Measures formula recognition with character detection matching; higher is better.</dd></div>
+            <div><dt>Formula CDM</dt><dd>Measures mathematical-formula recognition; higher is better.</dd></div>
             <div><dt>Reading Order</dt><dd>Measures the recovered sequence of document elements; higher is better.</dd></div>
-            <div><dt>Overall aggregation</dt><dd>TBA</dd></div>
+            <div><dt>Overall</dt><dd>Combines the confirmed evaluation metrics to determine the ranking.</dd></div>
           </dl>
           <div class="tba-note"><strong>Overall formula:</strong> TBA with the evaluation release.</div>
         </article>
@@ -159,27 +159,25 @@
       <div class="section-heading">
         <p class="section-kicker">Key milestones</p>
         <h2>Challenge timeline</h2>
-        <p>Exact challenge dates will be announced after alignment with the DocInsights and EMNLP schedules.</p>
+        <p>Final challenge dates will be announced soon.</p>
       </div>
       <div class="timeline-grid">
-        <article class="timeline-card"><span>01</span><h3>Sample data release</h3><p>TBA</p></article>
-        <article class="timeline-card"><span>02</span><h3>Submission opening</h3><p>TBA</p></article>
-        <article class="timeline-card"><span>03</span><h3>Submission deadline</h3><p>TBA</p></article>
-        <article class="timeline-card"><span>04</span><h3>Final evaluation</h3><p>TBA</p></article>
-        <article class="timeline-card timeline-highlight"><span>05</span><h3>DocInsights workshop</h3><p>EMNLP 2026, October 24-29<br>Budapest, Hungary</p></article>
+        <article class="timeline-card"><span>01</span><h3>Dataset release</h3><p>TBC</p></article>
+        <article class="timeline-card"><span>02</span><h3>Submissions open</h3><p>TBC</p></article>
+        <article class="timeline-card"><span>03</span><h3>Submission deadline</h3><p>TBC</p></article>
+        <article class="timeline-card"><span>04</span><h3>Final evaluation</h3><p>TBC</p></article>
+        <article class="timeline-card timeline-highlight"><span>05</span><h3>Results announced</h3><p>DocInsights 2026</p></article>
       </div>
     </section>
 
     <section id="awards">
       <div class="section-heading">
         <p class="section-kicker">Awards</p>
-        <h2>Document Parsing awards</h2>
-        <p>The top three teams in the official Document Parsing track will receive awards.</p>
+        <h2>Up to &#36;3,000 Prize Pool</h2>
+        <p>A prize pool of up to &#36;3,000 will be awarded to the top-performing teams. Further award details will be announced soon.</p>
       </div>
-      <div class="award-grid">
-        <article class="award-card award-first"><span>1st place</span><strong>&#36;1,000</strong><p>Document Parsing</p></article>
-        <article class="award-card"><span>2nd place</span><strong>&#36;500</strong><p>Document Parsing</p></article>
-        <article class="award-card"><span>3rd place</span><strong>&#36;300</strong><p>Document Parsing</p></article>
+      <div class="award-grid award-grid-single">
+        <article class="award-card award-first"><span>Challenge awards</span><strong>Up to &#36;3,000</strong><p>Final award allocation will be announced soon.</p></article>
       </div>
     </section>
 
@@ -189,7 +187,7 @@
         <div class="platform-copy">
           <p class="section-kicker">Evaluation platform</p>
           <h2>EvalAI Evaluation Platform</h2>
-          <p>EvalAI will provide a public validation leaderboard and a private test-phase leaderboard.</p>
+          <p>Submission platform: EvalAI. The challenge portal and sample submission links are coming soon.</p>
         </div>
         <span class="btn btn-disabled" aria-disabled="true">EvalAI challenge page: TBA</span>
       </div>
@@ -199,14 +197,14 @@
       <div class="section-heading">
         <p class="section-kicker">How it works</p>
         <h2>Participation flow</h2>
-        <p>The challenge follows the proposed data release, submission window, leaderboard, and results workshop format.</p>
+        <p>The challenge follows a public development, validation, held-out evaluation, and workshop-results workflow.</p>
       </div>
       <ol class="flow-list">
-        <li><span>1</span><div><h3>Data release</h3><p>A small public sample will be released.</p></div></li>
-        <li><span>2</span><div><h3>Submission window</h3><p>Submissions will be hosted on EvalAI.</p></div></li>
+        <li><span>1</span><div><h3>Data release</h3><p>Public development data will be released through Hugging Face.</p></div></li>
+        <li><span>2</span><div><h3>EvalAI submission</h3><p>Teams upload structured predictions on EvalAI.</p></div></li>
         <li><span>3</span><div><h3>Public validation</h3><p>EvalAI will provide a public validation leaderboard.</p></div></li>
-        <li><span>4</span><div><h3>Private test phase</h3><p>Final evaluation will use a private test-phase leaderboard.</p></div></li>
-        <li><span>5</span><div><h3>Results workshop</h3><p>Challenge results will be presented at DocInsights 2026.</p></div></li>
+        <li><span>4</span><div><h3>Held-out evaluation</h3><p>Final rankings will be determined on held-out data.</p></div></li>
+        <li><span>5</span><div><h3>Results workshop</h3><p>Results will be announced at DocInsights 2026.</p></div></li>
       </ol>
     </section>
 
@@ -214,14 +212,13 @@
       <div class="section-heading">
         <p class="section-kicker">Submission</p>
         <h2>Submission Format</h2>
-        <p>Submissions will use per-document structured predictions matched to ground-truth IDs. The exact specification will follow.</p>
+        <p>Participants will upload structured Markdown predictions for the document images in the evaluation set.</p>
       </div>
       <div class="submission-grid">
         <article class="submission-card">
-          <h3>Required prediction structure</h3>
-          <div class="tba-note"><strong>Per-document file format and schema:</strong> TBA</div>
-          <div class="tba-note"><strong>Archive layout:</strong> TBA</div>
-          <div class="tba-note"><strong>Ground-truth ID alignment rules:</strong> TBA</div>
+          <h3>Structured predictions</h3>
+          <p>Predictions must preserve original-language text, structured HTML tables, LaTeX formulas, reading order, document structure, and supported specialized notation.</p>
+          <div class="tba-note"><strong>Complete archive structure and file naming:</strong> TBA</div>
         </article>
         <article class="submission-card submission-status">
           <h3>Release checklist</h3>
@@ -243,16 +240,16 @@
       <div class="section-heading">
         <p class="section-kicker">Results</p>
         <h2>Leaderboard</h2>
-        <p>EvalAI will provide a public validation leaderboard and a private test-phase leaderboard. Display details are TBA.</p>
+        <p>Results will be updated periodically from successful public EvalAI submissions. The leaderboard will retain each team's best eligible public submission. Final rankings will be determined through held-out evaluation.</p>
       </div>
       <div class="leaderboard-stack">
         <article class="leaderboard-card">
-          <div class="leaderboard-header"><div><span>Official track</span><h3>Document Parsing</h3></div><span class="status-badge status-muted">TBA</span></div>
+          <div class="leaderboard-header"><div><span>Official task</span><h3>Expert-Level Document Parsing</h3></div><span class="status-badge status-muted">Coming soon</span></div>
           <div class="table-scroll" tabindex="0" aria-label="Scrollable Document Parsing leaderboard">
             <table>
               <caption>Document Parsing leaderboard</caption>
               <thead><tr><th>Rank</th><th>Team</th><th>Text ED</th><th>Table TEDS</th><th>Formula CDM</th><th>Reading Order</th><th>Overall</th></tr></thead>
-              <tbody><tr class="empty-row"><td colspan="7">TBA</td></tr></tbody>
+              <tbody><tr class="empty-row"><td colspan="7">Leaderboard opens with public EvalAI submissions.</td></tr></tbody>
             </table>
           </div>
         </article>
@@ -263,9 +260,13 @@
       <div class="section-heading">
         <p class="section-kicker">Rules</p>
         <h2>Participation Rules</h2>
-        <p>Detailed participation rules are TBA.</p>
+        <p>Core participation requirements are listed below. Submission limits and final-evaluation rules will be published with the EvalAI challenge.</p>
       </div>
-      <div class="highlight-box"><strong>TBA.</strong> The complete challenge rules will be published before submissions open.</div>
+      <div class="rule-grid">
+        <article><h3>Eligibility</h3><p>Open to researchers and teams worldwide.</p></article>
+        <article><h3>Submissions</h3><p>Submission limits and final-evaluation rules will be published with the EvalAI challenge.</p></article>
+        <article><h3>Requirements</h3><p>Top-ranked teams must submit a technical report. External data must be disclosed.</p></article>
+      </div>
     </section>
 
     <section id="faq">
@@ -273,7 +274,12 @@
         <p class="section-kicker">FAQ</p>
         <h2>Frequently Asked Questions</h2>
       </div>
-      <div class="highlight-box"><strong>TBA</strong></div>
+      <div class="faq-list">
+        <details><summary>When will the data be released?</summary><p>The release date and Hugging Face dataset link are TBC.</p></details>
+        <details><summary>Where will submissions be evaluated?</summary><p>Submissions will be evaluated on EvalAI; the challenge portal is coming soon.</p></details>
+        <details><summary>How will final rankings be determined?</summary><p>Final rankings will use the held-out evaluation phase. The final metric set and aggregation formula are TBA.</p></details>
+        <details><summary>What must top-ranked teams provide?</summary><p>A technical report is required, and all external data must be disclosed.</p></details>
+      </div>
     </section>
 
     <section class="contact-band" aria-labelledby="contact-title">
@@ -296,7 +302,7 @@
       <div>
         <h3>Challenge</h3>
         <ul>
-          <li><a href="#tracks">Track</a></li>
+          <li><a href="#tracks">Task</a></li>
           <li><a href="#evaluation">Evaluation</a></li>
           <li><a href="#submission">Submission</a></li>
           <li><a href="#leaderboard">Leaderboard</a></li>
@@ -313,7 +319,7 @@
       <div>
         <h3>Resources</h3>
         <ul>
-          <li>Challenge data: TBA</li>
+          <li>Hugging Face dataset: coming soon</li>
           <li>Contact: TBA</li>
         </ul>
       </div>
