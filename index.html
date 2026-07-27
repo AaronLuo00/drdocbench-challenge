@@ -115,7 +115,7 @@
         /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
             .grid-bg, .particle, .scanline { animation: none; }
-            .hero h1, .hero-tagline, .hero-desc, .countdown, .btn-group { animation: none; opacity: 1; }
+            .hero h1, .hero-tagline, .hero-desc, .countdown, .btn-group, .hero-resources { animation: none; opacity: 1; }
             * { transition-duration: 0.01ms !important; }
         }
 
@@ -354,6 +354,8 @@
         .hero-content {
             position: relative;
             z-index: 1;
+            width: 100%;
+            max-width: 80rem;
         }
 
         .hero-sponsor {
@@ -531,6 +533,43 @@
             flex-wrap: wrap;
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards 0.8s;
+        }
+
+        .hero-resources {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            flex-wrap: wrap;
+            margin-top: 2.2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.15rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 1s;
+        }
+
+        .hero-resources-label {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .hero-resources a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.2rem;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .hero-resources a::after {
+            content: ' ↗';
+            color: var(--accent);
+        }
+
+        .hero-resources a:hover,
+        .hero-resources a:focus {
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         /* Section Styles */
@@ -1033,7 +1072,7 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             html { font-size: 9px; }
             header { padding: 0 2rem; }
             main, footer { padding-left: 2rem; padding-right: 2rem; }
@@ -1050,6 +1089,7 @@
             footer { flex-direction: column; text-align: center; }
             .footer-links { justify-content: center; }
             .hero-sponsor { align-items: flex-start; margin-bottom: 2.6rem; }
+            .hero-content { width: 100%; }
         }
     </style>
 </head>
@@ -1117,20 +1157,24 @@
                 <a href="#task" class="btn-2077">Explore the Task</a>
                 <a href="#data" class="btn-2077 btn-outline">Dataset Details</a>
             </div>
+            <div class="hero-resources" aria-label="Related resources">
+                <span class="hero-resources-label">Learn more</span>
+                <a href="https://docinsights-workshop.github.io/docinsights-2026/" target="_blank" rel="noopener">DocInsights 2026 Workshop</a>
+                <a href="https://www.abaka.ai/" target="_blank" rel="noopener">Abaka AI</a>
+            </div>
         </div>
     </section>
 
     <main id="main-content">
         <section id="overview" class="animate-on-scroll">
             <h2 class="section-title">Overview</h2>
-            <p style="max-width: 80rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem; margin-bottom: 2.4rem;">The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. Based on Dr.DocBench, it uses difficulty-aware data selected around cases where strong document parsers struggle.</p>
-            <p style="max-width: 80rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem;">Participants will recover structured content from complex document pages, including text, tables, formulas, reading order, and specialized notation. The challenge is part of the <strong>DocInsights 2026 workshop at EMNLP 2026</strong>.</p>
+            <p style="max-width: 80rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem; margin-bottom: 2.4rem;">The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. Based on <a href="https://arxiv.org/html/2606.01393v1" style="color: var(--accent);" target="_blank" rel="noopener">Dr.DocBench</a>, it uses difficulty-aware data selected around cases where strong document parsers struggle.</p>
+            <p style="max-width: 80rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem;">Participants will recover structured content from complex document pages, including text, tables, formulas, reading order, and specialized notation. The challenge is part of the <a href="https://docinsights-workshop.github.io/docinsights-2026/" style="color: var(--accent);" target="_blank" rel="noopener"><strong>DocInsights 2026 workshop at EMNLP 2026</strong></a>.</p>
         </section>
 
         <section id="task" class="animate-on-scroll">
             <h2 class="section-title">Challenge Task</h2>
             <article class="track-card animate-on-scroll delay-1" style="max-width: 88rem;">
-                <div class="track-number">02</div>
                 <h3>Expert-Level Document Parsing</h3>
                 <p>Participants convert difficult document images into structured Markdown while preserving:</p>
                 <div class="track-metrics" style="margin-top: 2.4rem;">
@@ -1160,9 +1204,8 @@
         <section id="awards" class="animate-on-scroll">
             <h2 class="section-title">Awards</h2>
             <article class="track-card animate-on-scroll delay-1" style="max-width: 72rem; min-height: auto;">
-                <div class="track-number">$3K</div>
-                <h3>$3,000 Prize Pool</h3>
-                <p>The prize pool will be awarded to the top-performing teams. Further award details will be announced soon.</p>
+                <h3>Up to $3,000 Prize Pool</h3>
+                <p>A prize pool of up to $3,000 will be awarded to the top-performing teams. Further award details will be announced soon.</p>
             </article>
         </section>
 
