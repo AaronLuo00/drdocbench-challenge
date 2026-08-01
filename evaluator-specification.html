@@ -27,7 +27,7 @@ Overall          = mean(WindowOverall(w) for every scorable window w)</code></pr
     <h2>938 required, 900 scored</h2>
     <p>The current manifest contains 938 required identifiers. Exactly 900 have at least one supported Text, Table, Formula, or Reading Order component. The other 38 contain only figures, figure captions, masks, figure footnotes, page numbers, or no layout detections. They are required for structural completeness but do not affect any score.</p>
     <h2>Formula syntax</h2>
-    <p>The canonical syntax follows the GT: <code>$ ... $</code> inline and <code>$$ ... $$</code> display. The pinned parser also accepts <code>\( ... \)</code> and <code>\[ ... \]</code>.</p>
+    <p>The canonical syntax follows the GT: <code>$ ... $</code> inline and <code>$$ ... $$</code> display. Before scoring, the evaluator normalizes accepted <code>\( ... \)</code> and <code>\[ ... \]</code> compatibility delimiters to the canonical form. Unit tests require both representations to materialize identically.</p>
     <p><a class="btn btn-secondary" href="index.html#evaluation">Return to challenge page</a></p>
   </main>
 </body>

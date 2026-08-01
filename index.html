@@ -223,7 +223,7 @@
           <h3>Recommended JSONL format</h3>
           <p>Place one <code>predictions.jsonl</code> at the archive root. Each row must contain <code>subject</code>, <code>document_id</code>, integer <code>start_page</code>, integer <code>end_page</code>, and string <code>markdown</code>. The identifier fields must exactly match the phase manifest.</p>
           <pre><code>{"subject":"CHEMISTRY","document_id":"...","start_page":1,"end_page":2,"markdown":"Text\n\n$$E = mc^2$$"}</code></pre>
-          <div class="tba-note"><strong>Canonical formula delimiters:</strong> follow the evaluation GT: <code>$ ... $</code> inline and <code>$$ ... $$</code> display. The parser also recognizes <code>\( ... \)</code> and <code>\[ ... \]</code>.</div>
+          <div class="tba-note"><strong>Canonical formula delimiters:</strong> follow the evaluation GT: <code>$ ... $</code> inline and <code>$$ ... $$</code> display. Before scoring, the evaluator normalizes accepted <code>\( ... \)</code> and <code>\[ ... \]</code> compatibility delimiters to the canonical form.</div>
         </article>
         <article class="submission-card submission-status">
           <h3>Release checklist</h3>
