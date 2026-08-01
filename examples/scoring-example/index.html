@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Label-visible Scoring Example | Dr.DocBench</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <main class="container" style="padding-block: 3rem; max-width: 1000px;">
+    <p class="section-kicker">Synthetic development fixture</p>
+    <h1>Label-visible Scoring Example</h1>
+    <p>This example is separate from the validation and test phases and contains no challenge ground truth. It demonstrates the canonical Markdown structure and formula-delimiter normalization under <code>drdocbench-document-parsing-v1</code>.</p>
+    <h2>Input page</h2>
+    <p><img src="images/example_page_1.png" alt="Synthetic page titled Energy Report with text, a display formula, and a two-column table" style="display:block; width:min(100%, 540px); height:auto; border:1px solid #d4ddd9;"></p>
+    <h2>Files</h2>
+    <ul>
+      <li><a href="reference.md">Label-visible reference Markdown</a></li>
+      <li><a href="candidates/exact.md">Exact canonical candidate</a></li>
+      <li><a href="candidates/compatible-delimiters.md">Equivalent compatibility-delimiter candidate</a></li>
+      <li><a href="expected_scores.json">Expected component and Overall scores</a></li>
+    </ul>
+    <h2>Expected result</h2>
+    <p>Both candidates materialize to the same canonical Markdown before scoring. Each receives Text ED 0.0, Table TEDS 100.0, Formula CDM 100.0, Reading Order 100.0, and Overall 100.0.</p>
+    <p><a class="btn btn-secondary" href="../../evaluator-specification.html">Return to evaluator specification</a></p>
+  </main>
+</body>
+</html>

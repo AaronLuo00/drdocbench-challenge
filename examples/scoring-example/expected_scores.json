@@ -1,0 +1,19 @@
+{
+  "scoring_contract_version": "drdocbench-document-parsing-v1",
+  "candidates": {
+    "exact.md": {
+      "Text_ED": 0.0,
+      "Table_TEDS": 100.0,
+      "Formula_CDM": 100.0,
+      "Reading_Order": 100.0,
+      "Overall": 100.0
+    },
+    "compatible-delimiters.md": {
+      "Text_ED": 0.0,
+      "Table_TEDS": 100.0,
+      "Formula_CDM": 100.0,
+      "Reading_Order": 100.0,
+      "Overall": 100.0
+    }
+  }
+}
