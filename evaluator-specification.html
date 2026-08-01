@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluator Specification | Dr.DocBench Challenge</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <main class="container" style="padding-block: 3rem; max-width: 1000px;">
+    <p class="section-kicker">Scoring contract</p>
+    <h1>Dr.DocBench Document Parsing Evaluator</h1>
+    <p><code>drdocbench-document-parsing-v1</code></p>
+    <h2>Prediction unit</h2>
+    <p>Every manifest identifier <code>(subject, document_id, start_page, end_page)</code> must occur exactly once. Missing, extra, or duplicate windows fail structural validation.</p>
+    <h2>Metrics</h2>
+    <ul>
+      <li><strong>Text ED:</strong> normalized Levenshtein distance over scored text categories, 0-1; lower is better.</li>
+      <li><strong>Table TEDS:</strong> mean valid-table similarity, displayed on 0-100; higher is better.</li>
+      <li><strong>Formula CDM:</strong> mean isolated-formula CDM F1, displayed on 0-100; higher is better.</li>
+      <li><strong>Reading Order:</strong> <code>(1 - normalized edit distance) * 100</code>; higher is better.</li>
+    </ul>
+    <h2>Overall</h2>
+    <pre><code>WindowOverall(w) = mean(available 0-100 components in w)
+Overall          = mean(WindowOverall(w) for every scorable window w)</code></pre>
+    <p>Unavailable components are excluded, not assigned zero. Windows with no supported component are excluded from every metric denominator.</p>
+    <h2>938 required, 900 scored</h2>
+    <p>The current manifest contains 938 required identifiers. Exactly 900 have at least one supported Text, Table, Formula, or Reading Order component. The other 38 contain only figures, figure captions, masks, figure footnotes, page numbers, or no layout detections. They are required for structural completeness but do not affect any score.</p>
+    <h2>Formula syntax</h2>
+    <p>The canonical syntax follows the GT: <code>$ ... $</code> inline and <code>$$ ... $$</code> display. The pinned parser also accepts <code>\( ... \)</code> and <code>\[ ... \]</code>.</p>
+    <p><a class="btn btn-secondary" href="index.html#evaluation">Return to challenge page</a></p>
+  </main>
+</body>
+</html>

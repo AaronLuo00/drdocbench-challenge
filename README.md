@@ -16,7 +16,9 @@ Then visit `http://127.0.0.1:8765/`.
 
 ## Current status
 
-The website contains the confirmed challenge scope and prize structure. Dates, EvalAI challenge URL, data downloads, submission schema, and final ranking formulas are marked as coming soon until they are released.
+The website contains the challenge scope, versioned participant-package links,
+submission schema, and scoring contract. Official dates and the canonical public
+challenge URL remain TBA.
 
 ## Links
 
