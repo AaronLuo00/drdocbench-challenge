@@ -78,10 +78,12 @@
     <section id="overview" class="section-intro">
       <p class="section-kicker">Why this challenge</p>
       <h2>Expert-Level Document Parsing</h2>
-      <p>The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. The current phase package contains 1,005 page images organized into 938 two-page evaluation windows across 67 documents.</p>
-      <div class="stat-grid stat-grid-two" aria-label="Dr.DocBench Challenge statistics">
-        <article class="stat-item"><strong>1,005</strong><span>phase input pages</span></article>
-        <article class="stat-item"><strong>938</strong><span>evaluation windows</span></article>
+      <p>The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. Public Validation and Private Test use separate, versioned participant packages and disjoint document sets.</p>
+      <div class="stat-grid stat-grid-four" aria-label="Dr.DocBench Challenge phase statistics">
+        <article class="stat-item"><strong>1,005</strong><span>validation pages</span></article>
+        <article class="stat-item"><strong>938</strong><span>validation windows</span></article>
+        <article class="stat-item"><strong>509</strong><span>held-out test pages</span></article>
+        <article class="stat-item"><strong>474</strong><span>held-out test windows</span></article>
       </div>
       <div class="highlight-box">
         <strong>Challenge objective.</strong> Recover structured content from complex document pages while preserving text, tables, formulas, reading order, document structure, and specialized notation.
@@ -133,8 +135,8 @@
           <p>Use the phase packages below for EvalAI submissions. The public Hugging Face repository is a labeled reference benchmark and is not the EvalAI phase input package.</p>
         </div>
         <div class="action-band-actions">
-          <a class="btn btn-primary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v1/drdocbench-validation-v1.zip">Validation package</a>
-          <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v1/drdocbench-test-v1.zip">Test package</a>
+          <a class="btn btn-primary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v1/drdocbench-validation-v1.zip">Validation package v1</a>
+          <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v2/drdocbench-test-v2.zip">Test package v2</a>
           <a class="btn btn-ghost" href="https://huggingface.co/datasets/2077AIDataFoundation/DrDocBench" target="_blank" rel="noopener">Reference benchmark</a>
         </div>
       </div>
@@ -157,7 +159,7 @@
             <div><dt>Overall</dt><dd>Mean of the per-window available-component averages; higher is better.</dd></div>
           </dl>
           <div class="tba-note"><strong>Overall formula:</strong> for each window, average only its available Text, Table, Formula, and Reading Order scores; then average the scorable window scores. Missing components are excluded, not assigned zero.</div>
-          <p><strong>Scorable-window audit.</strong> All 938 identifiers are required for structural validation. Of these, 900 have at least one supported metric component. The remaining 38 contain only non-scored annotations such as figures, figure captions, masks, figure footnotes, and page numbers, or no layout detections, and are excluded from every metric denominator.</p>
+          <p><strong>Scorable-window audit.</strong> Public Validation v1 requires 938 identifiers: 900 are scorable and 38 are non-scorable. Private Test v2 requires 474 identifiers: 454 are scorable and 20 are non-scorable. Non-scorable windows contain only non-scored annotations such as figures, figure captions, masks, figure footnotes, and page numbers, or no layout detections, and are excluded from every metric denominator.</p>
           <p><a class="btn btn-secondary" href="evaluator-specification.html">Read the evaluator specification</a> <a class="btn btn-ghost" href="examples/scoring-example/">View scoring example</a></p>
         </article>
       </div>
@@ -227,7 +229,7 @@
           <h3>Recommended JSONL format</h3>
           <p>Place one <code>predictions.jsonl</code> at the archive root. Each row must contain <code>subject</code>, <code>document_id</code>, integer <code>start_page</code>, integer <code>end_page</code>, and string <code>markdown</code>. The identifier fields must exactly match the phase manifest.</p>
           <pre><code>{"subject":"CHEMISTRY","document_id":"...","start_page":1,"end_page":2,"markdown":"Text\n\n$$E = mc^2$$"}</code></pre>
-          <div class="tba-note"><strong>Canonical formula delimiters:</strong> follow the evaluation GT: <code>$ ... $</code> inline and <code>$$ ... $$</code> display. Before scoring, the evaluator normalizes accepted <code>\( ... \)</code> and <code>\[ ... \]</code> compatibility delimiters to the canonical form.</div>
+          <div class="tba-note"><strong>Formula delimiters:</strong> the evaluator accepts <code>$ ... $</code> or <code>\( ... \)</code> inline, and <code>$$ ... $$</code> or <code>\[ ... \]</code> for display formulas. Structured HTML table contents are preserved as submitted and compared by TEDS.</div>
         </article>
         <article class="submission-card submission-status">
           <h3>Release checklist</h3>
@@ -238,7 +240,7 @@
             <li><span>Ready</span> SHA-256 checksums</li>
           </ul>
           <div class="disabled-actions">
-            <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/tag/participant-data-v1">Download packages</a>
+            <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases">Download phase packages</a>
             <a class="btn btn-primary" href="https://eval.ai/web/challenges/challenge-page/2717/submit" target="_blank" rel="noopener">Submit on EvalAI</a>
           </div>
         </article>
@@ -286,7 +288,7 @@
       <div class="faq-list">
         <details><summary>Which data should I use for EvalAI?</summary><p>Use the versioned Validation or Test participant package linked on this page. The labeled Hugging Face benchmark is a reference release, not a phase input package.</p></details>
         <details><summary>Where will submissions be evaluated?</summary><p>Submissions are evaluated by the remote Dr.DocBench worker through EvalAI challenge 2717.</p></details>
-        <details><summary>How is Overall computed?</summary><p>Each window averages its available 0-100 component scores. Overall is the mean over scorable windows. Missing components and the 38 non-scorable windows are excluded from the denominator.</p></details>
+        <details><summary>How is Overall computed?</summary><p>Each window averages its available 0-100 component scores. Overall is the mean over scorable windows. Missing components are excluded from the denominator, as are the 38 non-scorable Public Validation windows and 20 non-scorable Private Test windows.</p></details>
         <details><summary>What must top-ranked teams provide?</summary><p>A technical report is required, and all external data must be disclosed.</p></details>
       </div>
     </section>
@@ -329,7 +331,7 @@
         <h3>Resources</h3>
         <ul>
           <li><a href="https://drdocbench-challenge.abaka-pages.com/">Official challenge website</a></li>
-          <li><a href="https://github.com/AaronLuo00/drdocbench-challenge/releases/tag/participant-data-v1">Participant packages</a></li>
+          <li><a href="https://github.com/AaronLuo00/drdocbench-challenge/releases">Participant packages</a></li>
           <li><a href="https://huggingface.co/datasets/2077AIDataFoundation/DrDocBench">Reference benchmark</a></li>
           <li>Contact: TBA</li>
         </ul>
