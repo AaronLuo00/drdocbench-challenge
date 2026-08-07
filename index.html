@@ -80,10 +80,10 @@
       <h2>Expert-Level Document Parsing</h2>
       <p>The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. Public Validation and Private Test use separate, versioned participant packages and disjoint document sets.</p>
       <div class="stat-grid stat-grid-four" aria-label="Dr.DocBench Challenge phase statistics">
-        <article class="stat-item"><strong>1,005</strong><span>validation pages</span></article>
-        <article class="stat-item"><strong>938</strong><span>validation windows</span></article>
-        <article class="stat-item"><strong>509</strong><span>held-out test pages</span></article>
-        <article class="stat-item"><strong>474</strong><span>held-out test windows</span></article>
+        <article class="stat-item"><strong>1,005</strong><span>validation predictions</span></article>
+        <article class="stat-item"><strong>962</strong><span>scorable validation pages</span></article>
+        <article class="stat-item"><strong>509</strong><span>test predictions</span></article>
+        <article class="stat-item"><strong>488</strong><span>scorable test pages</span></article>
       </div>
       <div class="highlight-box">
         <strong>Challenge objective.</strong> Recover structured content from complex document pages while preserving text, tables, formulas, reading order, document structure, and specialized notation.
@@ -115,7 +115,7 @@
       <div class="section-heading">
         <p class="section-kicker">Dataset</p>
         <h2>Dr.DocBench Challenge Dataset</h2>
-        <p>The challenge uses versioned, phase-specific participant packages. Each package contains only input images, the exact prediction-window manifest, checksums, a sample submission, and a standalone validator. Ground-truth JSON and reference Markdown are not included.</p>
+        <p>The challenge uses versioned, phase-specific participant packages. Each package contains only input images, the exact prediction-page manifest, checksums, a sample submission, and a standalone validator. Ground-truth JSON and reference Markdown are not included.</p>
       </div>
       <div class="feature-grid two-column-grid">
         <article class="feature-card">
@@ -135,8 +135,8 @@
           <p>Use the phase packages below for EvalAI submissions. The public Hugging Face repository is a labeled reference benchmark and is not the EvalAI phase input package.</p>
         </div>
         <div class="action-band-actions">
-          <a class="btn btn-primary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v1/drdocbench-validation-v1.zip">Validation package v1</a>
-          <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v2/drdocbench-test-v2.zip">Test package v2</a>
+          <a class="btn btn-primary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v3/drdocbench-validation-v3.zip">Validation package v3</a>
+          <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v3/drdocbench-test-v3.zip">Test package v3</a>
           <a class="btn btn-ghost" href="https://huggingface.co/datasets/2077AIDataFoundation/DrDocBench" target="_blank" rel="noopener">Reference benchmark</a>
         </div>
       </div>
@@ -146,7 +146,7 @@
       <div class="section-heading">
         <p class="section-kicker">Evaluation</p>
         <h2>Evaluation Framework</h2>
-        <p>Submissions are evaluated under scoring contract <code>drdocbench-document-parsing-v2-md2md</code>. The hidden per-page reference Markdown is joined for each required window, and reference and prediction Markdown follow the same parsing and matching path. Each available component is converted to a higher-is-better 0-100 score before window-level aggregation.</p>
+        <p>Submissions are evaluated under scoring contract <code>drdocbench-document-parsing-v3-single-page-md2md</code>. Every submitted page is compared only with its matching hidden per-page reference Markdown, and reference and prediction Markdown follow the same parsing and matching path. Each available component is converted to a higher-is-better 0-100 score before page-level aggregation.</p>
       </div>
       <div class="evaluation-grid single-column-grid">
         <article class="evaluation-card">
@@ -156,10 +156,10 @@
             <div><dt>Table TEDS</dt><dd>Mean similarity over valid table samples, displayed on 0-100; higher is better.</dd></div>
             <div><dt>Formula CDM</dt><dd>Mean CDM F1 over isolated display formulas, displayed on 0-100; higher is better.</dd></div>
             <div><dt>Reading Order</dt><dd><code>(1 - normalized reading-order edit distance) * 100</code>; higher is better.</dd></div>
-            <div><dt>Overall</dt><dd>Mean of the per-window available-component averages; higher is better.</dd></div>
+            <div><dt>Overall</dt><dd>Mean of the per-page available-component averages; higher is better.</dd></div>
           </dl>
-          <div class="tba-note"><strong>Overall formula:</strong> for each window, average only its available Text, Table, Formula, and Reading Order scores; then average the scorable window scores. Missing components are excluded, not assigned zero.</div>
-          <p><strong>Scorable-window audit.</strong> Public Validation v1 requires 938 identifiers: 919 are scorable and 19 are non-scorable. Private Test v2 requires 474 identifiers: 473 are scorable and one is non-scorable. A non-scorable window contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed and is excluded from every metric denominator.</p>
+          <div class="tba-note"><strong>Overall formula:</strong> for each page, average only its available Text, Table, Formula, and Reading Order scores; then average the scorable page scores. Missing components are excluded, not assigned zero.</div>
+          <p><strong>Scorable-page audit.</strong> Public Validation v3 requires 1,005 page predictions: 962 are scorable and 43 are non-scorable. Private Test v3 requires 509 page predictions: 488 are scorable and 21 are non-scorable. A non-scorable page contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed and is excluded from every metric denominator.</p>
           <p><a class="btn btn-secondary" href="evaluator-specification.html">Read the evaluator specification</a> <a class="btn btn-ghost" href="examples/scoring-example/">View scoring example</a></p>
         </article>
       </div>
@@ -210,7 +210,7 @@
         <p>The challenge follows a public development, validation, held-out evaluation, and workshop-results workflow.</p>
       </div>
       <ol class="flow-list">
-        <li><span>1</span><div><h3>Phase package</h3><p>Download the versioned image-only package and exact window manifest for the selected EvalAI phase.</p></div></li>
+        <li><span>1</span><div><h3>Phase package</h3><p>Download the versioned image-only package and exact page manifest for the selected EvalAI phase.</p></div></li>
         <li><span>2</span><div><h3>EvalAI submission</h3><p>Teams upload structured predictions on EvalAI.</p></div></li>
         <li><span>3</span><div><h3>Public validation</h3><p>EvalAI will provide a public validation leaderboard.</p></div></li>
         <li><span>4</span><div><h3>Held-out evaluation</h3><p>Final rankings will be determined on held-out data.</p></div></li>
@@ -222,19 +222,25 @@
       <div class="section-heading">
         <p class="section-kicker">Submission</p>
         <h2>Submission Format</h2>
-        <p>Participants upload one ZIP containing exactly one prediction for every manifest-defined evaluation window.</p>
+        <p>Participants upload one ZIP containing exactly one Markdown prediction for every manifest-defined page.</p>
       </div>
       <div class="submission-grid">
         <article class="submission-card">
-          <h3>Recommended JSONL format</h3>
-          <p>Place one <code>predictions.jsonl</code> at the archive root. Each row must contain <code>subject</code>, <code>document_id</code>, integer <code>start_page</code>, integer <code>end_page</code>, and string <code>markdown</code>. The identifier fields must exactly match the phase manifest.</p>
-          <pre><code>{"subject":"CHEMISTRY","document_id":"...","start_page":1,"end_page":2,"markdown":"Text\n\n$$E = mc^2$$"}</code></pre>
+          <h3>Recommended Markdown layout</h3>
+          <p>Mirror the source <code>mds/</code> hierarchy exactly and keep one file per page. Do not add a wrapper directory around the subject folders.</p>
+          <pre><code>submission.zip
+&#9492;&#9472; CHEMISTRY/
+   &#9492;&#9472; &lt;document_id&gt;/
+      &#9492;&#9472; mds/
+         &#9492;&#9472; &lt;document_id&gt;_1.md</code></pre>
+          <p>JSONL is also supported. Each line must contain <code>subject</code>, <code>document_id</code>, integer <code>page</code>, and string <code>markdown</code>.</p>
+          <pre><code>{"subject":"CHEMISTRY","document_id":"...","page":1,"markdown":"Text\n\n$$E = mc^2$$"}</code></pre>
           <div class="tba-note"><strong>Formula delimiters:</strong> the evaluator accepts <code>$ ... $</code> or <code>\( ... \)</code> inline, and <code>$$ ... $$</code> or <code>\[ ... \]</code> for display formulas. Structured HTML table contents are preserved as submitted and compared by TEDS.</div>
         </article>
         <article class="submission-card submission-status">
           <h3>Release checklist</h3>
           <ul class="check-list">
-            <li><span>Ready</span> Exact phase window manifest</li>
+            <li><span>Ready</span> Exact phase page manifest</li>
             <li><span>Ready</span> Full structurally valid sample ZIP</li>
             <li><span>Ready</span> Standalone archive validator</li>
             <li><span>Ready</span> SHA-256 checksums</li>
@@ -288,7 +294,7 @@
       <div class="faq-list">
         <details><summary>Which data should I use for EvalAI?</summary><p>Use the versioned Validation or Test participant package linked on this page. The labeled Hugging Face benchmark is a reference release, not a phase input package.</p></details>
         <details><summary>Where will submissions be evaluated?</summary><p>Submissions are evaluated by the remote Dr.DocBench worker through EvalAI challenge 2717.</p></details>
-        <details><summary>How is Overall computed?</summary><p>Each window averages its available 0-100 component scores. Overall is the mean over scorable windows. Missing components are excluded from the denominator, as are the 38 non-scorable Public Validation windows and 20 non-scorable Private Test windows.</p></details>
+        <details><summary>How is Overall computed?</summary><p>Each page averages its available 0-100 component scores. Overall is the mean over scorable pages. Missing components are excluded from the denominator. Public Validation has 43 non-scorable pages and Private Test has 21; those pages remain required when their input image is released but do not affect scores.</p></details>
         <details><summary>What must top-ranked teams provide?</summary><p>A technical report is required, and all external data must be disclosed.</p></details>
       </div>
     </section>
