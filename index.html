@@ -146,7 +146,7 @@
       <div class="section-heading">
         <p class="section-kicker">Evaluation</p>
         <h2>Evaluation Framework</h2>
-        <p>Submissions are evaluated under scoring contract <code>drdocbench-document-parsing-v1</code>. Each available component is converted to a higher-is-better 0-100 score before window-level aggregation.</p>
+        <p>Submissions are evaluated under scoring contract <code>drdocbench-document-parsing-v2-md2md</code>. The hidden per-page reference Markdown is joined for each required window, and reference and prediction Markdown follow the same parsing and matching path. Each available component is converted to a higher-is-better 0-100 score before window-level aggregation.</p>
       </div>
       <div class="evaluation-grid single-column-grid">
         <article class="evaluation-card">
@@ -159,7 +159,7 @@
             <div><dt>Overall</dt><dd>Mean of the per-window available-component averages; higher is better.</dd></div>
           </dl>
           <div class="tba-note"><strong>Overall formula:</strong> for each window, average only its available Text, Table, Formula, and Reading Order scores; then average the scorable window scores. Missing components are excluded, not assigned zero.</div>
-          <p><strong>Scorable-window audit.</strong> Public Validation v1 requires 938 identifiers: 900 are scorable and 38 are non-scorable. Private Test v2 requires 474 identifiers: 454 are scorable and 20 are non-scorable. Non-scorable windows contain only non-scored annotations such as figures, figure captions, masks, figure footnotes, and page numbers, or no layout detections, and are excluded from every metric denominator.</p>
+          <p><strong>Scorable-window audit.</strong> Public Validation v1 requires 938 identifiers: 919 are scorable and 19 are non-scorable. Private Test v2 requires 474 identifiers: 473 are scorable and one is non-scorable. A non-scorable window contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed and is excluded from every metric denominator.</p>
           <p><a class="btn btn-secondary" href="evaluator-specification.html">Read the evaluator specification</a> <a class="btn btn-ghost" href="examples/scoring-example/">View scoring example</a></p>
         </article>
       </div>

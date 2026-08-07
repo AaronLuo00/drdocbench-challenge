@@ -11,9 +11,11 @@
   <main class="container" style="padding-block: 3rem; max-width: 1000px;">
     <p class="section-kicker">Scoring contract</p>
     <h1>Dr.DocBench Document Parsing Evaluator</h1>
-    <p><code>drdocbench-document-parsing-v1</code></p>
+    <p><code>drdocbench-document-parsing-v2-md2md</code></p>
     <h2>Prediction unit</h2>
     <p>Every manifest identifier <code>(subject, document_id, start_page, end_page)</code> must occur exactly once. Missing, extra, or duplicate windows fail structural validation.</p>
+    <h2>Ground-truth source</h2>
+    <p>The production reference is the curated per-page Markdown in <code>mds/*.md</code>. For every required window, the evaluator reads the covered page files in ascending order, strips outer whitespace, and joins them with one blank line. The merged reference and submitted Markdown are parsed and matched through the same evaluation path. Private structured annotations are retained for auditing and regression diagnostics.</p>
     <h2>Metrics</h2>
     <ul>
       <li><strong>Text ED:</strong> normalized Levenshtein distance over scored text categories, 0-1; lower is better.</li>
@@ -27,10 +29,10 @@ Overall          = mean(WindowOverall(w) for every scorable window w)</code></pr
     <p>Unavailable components are excluded, not assigned zero. Windows with no supported component are excluded from every metric denominator.</p>
     <h2>Phase manifest audit</h2>
     <ul>
-      <li><strong>Public Validation v1:</strong> 67 documents, 1,005 pages, and 938 required identifiers; 900 are scorable and 38 are non-scorable.</li>
-      <li><strong>Private Test v2:</strong> 34 held-out documents, 509 released pages, and 474 required identifiers; 454 are scorable and 20 are non-scorable.</li>
+      <li><strong>Public Validation v1:</strong> 67 documents, 1,005 pages, and 938 required identifiers; 919 are scorable and 19 are non-scorable.</li>
+      <li><strong>Private Test v2:</strong> 34 held-out documents, 509 released pages, and 474 required identifiers; 473 are scorable and one is non-scorable.</li>
     </ul>
-    <p>Non-scorable windows contain only figures, figure captions, masks, figure footnotes, page numbers, or no layout detections. They are required for structural completeness but do not affect any score. Private Test v2 also excludes one empty annotation page for which no input image was provided, and no window crosses that page-number gap.</p>
+    <p>A non-scorable window contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed. It is required for structural completeness but does not affect any score. Private Test v2 also excludes one empty reference page for which no input image was provided, and no window crosses that page-number gap.</p>
     <h2>Formula syntax</h2>
     <p>The Markdown parser accepts <code>$ ... $</code> or <code>\( ... \)</code> inline, and <code>$$ ... $$</code> or <code>\[ ... \]</code> for display formulas. The current GT primarily uses dollar delimiters in text and Pandoc-style <code>\( ... \)</code> spans inside some structured HTML tables. Table cell contents are preserved as submitted and compared by TEDS.</p>
     <h2>Label-visible example</h2>

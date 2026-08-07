@@ -1,5 +1,5 @@
 {
-  "scoring_contract_version": "drdocbench-document-parsing-v1",
+  "scoring_contract_version": "drdocbench-document-parsing-v2-md2md",
   "candidates": {
     "exact.md": {
       "Text_ED": 0.0,

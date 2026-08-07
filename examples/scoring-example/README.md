@@ -6,6 +6,6 @@ This synthetic example is separate from the validation and test phases and conta
 - `reference.md`: label-visible reference output.
 - `candidates/exact.md`: exact canonical prediction.
 - `candidates/compatible-delimiters.md`: mathematically identical prediction using accepted compatibility delimiters.
-- `expected_scores.json`: expected scores under `drdocbench-document-parsing-v1`.
+- `expected_scores.json`: expected scores under `drdocbench-document-parsing-v2-md2md`.
 
 The Markdown parser natively accepts both delimiter families. The evaluator preserves submitted Markdown rather than globally rewriting delimiters, which also preserves math markup inside structured HTML table cells. Both candidates receive full component and Overall scores.
