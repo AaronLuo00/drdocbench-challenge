@@ -16,6 +16,12 @@
     <p>Every manifest identifier <code>(subject, document_id, page)</code> must occur exactly once. Missing, extra, or duplicate pages fail structural validation.</p>
     <h2>Ground-truth source</h2>
     <p>The production reference is the curated per-page Markdown in <code>mds/*.md</code>. For every required page, the evaluator reads exactly <code>&lt;document_id&gt;_&lt;page&gt;.md</code>. The reference and submitted single-page Markdown are parsed and matched through the same evaluation path. Private structured annotations are retained for auditing and regression diagnostics.</p>
+    <h2>Visual-region policy</h2>
+    <ul>
+      <li>Readable labels for ordinary diagrams and figures are scored when transcribed as standalone reference text.</li>
+      <li>Dense labels inside map regions and individual puzzle-grid letters are excluded. Separately transcribed map or puzzle headings remain scoreable.</li>
+      <li>Markdown image nodes and relative <code>./imgs/*</code> crop references are ignored. The evaluator never opens those crop files, and participants do not submit them.</li>
+    </ul>
     <h2>Metrics</h2>
     <ul>
       <li><strong>Text ED:</strong> normalized Levenshtein distance over scored text categories, 0-1; lower is better.</li>
@@ -33,6 +39,7 @@ Overall        = mean(PageOverall(p) for every scorable page p)</code></pre>
       <li><strong>Private Test v3:</strong> 34 held-out documents and 509 required page predictions; 488 are scorable and 21 are non-scorable.</li>
     </ul>
     <p>A non-scorable page contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed. It is required for structural completeness when an input image is released but does not affect any score. Private Test v3 excludes one empty reference page for which no input image was provided.</p>
+    <p>The official evaluation unit is one page. The previous adjacent two-page-window design and its 474-window manifest are retired and are not used by this challenge.</p>
     <h2>Formula syntax</h2>
     <p>The Markdown parser accepts <code>$ ... $</code> or <code>\( ... \)</code> inline, and <code>$$ ... $$</code> or <code>\[ ... \]</code> for display formulas. The current GT primarily uses dollar delimiters in text and Pandoc-style <code>\( ... \)</code> spans inside some structured HTML tables. Table cell contents are preserved as submitted and compared by TEDS.</p>
     <h2>Label-visible example</h2>
