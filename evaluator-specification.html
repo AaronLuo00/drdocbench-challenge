@@ -34,12 +34,12 @@
     <pre><code>PageOverall(p) = mean(available 0-100 components on p)
 Overall        = mean(PageOverall(p) for every scorable page p)</code></pre>
     <p>Unavailable components are excluded, not assigned zero. Pages with no supported component are excluded from every metric denominator.</p>
-    <h2>Shared phase manifest audit</h2>
+    <h2>Public Validation manifest audit</h2>
     <ul>
-      <li><strong>Public Validation and Private Test:</strong> 34 documents and 509 required page predictions; 487 are scorable and 22 are non-scorable.</li>
+      <li><strong>Public Validation:</strong> 34 documents and 509 required page predictions; 487 are scorable and 22 are non-scorable.</li>
     </ul>
     <p>A non-scorable page contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed. It is required for structural completeness when an input image is released but does not affect any score. The shared evaluation set excludes one empty reference page for which no input image was provided.</p>
-    <p>Public Validation and Private Test use the same identifiers, hidden ground truth, and evaluator. Public scores may appear on the leaderboard; Private Test results remain hidden. Private Test is not an independent held-out dataset.</p>
+    <p>Public Validation is the challenge's only official participant-facing phase. Eligible results may appear on the public leaderboard.</p>
     <p>The official evaluation unit is one page. The previous adjacent two-page-window design and its 474-window manifest are retired and are not used by this challenge.</p>
     <h2>Formula syntax</h2>
     <p>The Markdown parser accepts <code>$ ... $</code> or <code>\( ... \)</code> inline, and <code>$$ ... $$</code> or <code>\[ ... \]</code> for display formulas. The current GT primarily uses dollar delimiters in text and Pandoc-style <code>\( ... \)</code> spans inside some structured HTML tables. Table cell contents are preserved as submitted and compared by TEDS.</p>
