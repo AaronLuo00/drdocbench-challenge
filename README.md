@@ -16,8 +16,9 @@ Then visit `http://127.0.0.1:8765/`.
 
 ## Current status
 
-The website contains the challenge scope, versioned participant-package links,
-submission schema, and scoring contract. Official dates remain TBA. The canonical
+The website contains the challenge scope, shared 509-page participant-package
+link, submission schema, scoring contract, and the August 10-October 10, 2026
+competition period. The canonical
 public challenge URL is <https://drdocbench-challenge.abaka-pages.com/>.
 
 ## Links

@@ -78,12 +78,12 @@
     <section id="overview" class="section-intro">
       <p class="section-kicker">Why this challenge</p>
       <h2>Expert-Level Document Parsing</h2>
-      <p>The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. Public Validation and Private Test use separate, versioned participant packages and disjoint document sets.</p>
-      <div class="stat-grid stat-grid-four" aria-label="Dr.DocBench Challenge phase statistics">
-        <article class="stat-item"><strong>1,005</strong><span>validation predictions</span></article>
-        <article class="stat-item"><strong>962</strong><span>scorable validation pages</span></article>
-        <article class="stat-item"><strong>509</strong><span>test predictions</span></article>
-        <article class="stat-item"><strong>487</strong><span>scorable test pages</span></article>
+      <p>The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. Public Validation and Private Test use the same released evaluation set, hidden ground truth, page identifiers, and evaluator.</p>
+      <div class="stat-grid stat-grid-four" aria-label="Dr.DocBench Challenge evaluation statistics">
+        <article class="stat-item"><strong>509</strong><span>required predictions</span></article>
+        <article class="stat-item"><strong>487</strong><span>scorable pages</span></article>
+        <article class="stat-item"><strong>22</strong><span>non-scorable pages</span></article>
+        <article class="stat-item"><strong>34</strong><span>documents</span></article>
       </div>
       <div class="highlight-box">
         <strong>Challenge objective.</strong> Recover structured content from complex document pages while preserving text, tables, formulas, reading order, document structure, and specialized notation.
@@ -115,7 +115,7 @@
       <div class="section-heading">
         <p class="section-kicker">Dataset</p>
         <h2>Dr.DocBench Challenge Dataset</h2>
-        <p>The challenge uses versioned, phase-specific participant packages. Each package contains only input images, the exact prediction-page manifest, checksums, a sample submission, and a standalone validator. Ground-truth JSON and reference Markdown are not included.</p>
+        <p>The challenge uses one shared participant package for both EvalAI phases. It contains only input images, the exact 509-page prediction manifest, checksums, a sample submission, and a standalone validator. Ground-truth JSON and reference Markdown are not included.</p>
       </div>
       <div class="feature-grid two-column-grid">
         <article class="feature-card">
@@ -132,11 +132,10 @@
       <div class="action-band">
         <div>
           <h3>Challenge Data and Evaluation Resources</h3>
-          <p>Use the phase packages below for EvalAI submissions. The public Hugging Face repository is a labeled reference benchmark and is not the EvalAI phase input package.</p>
+          <p>Use the shared package below for both Public Validation and Private Test submissions. The public Hugging Face repository is a labeled reference benchmark and is not the EvalAI phase input package.</p>
         </div>
         <div class="action-band-actions">
-          <a class="btn btn-primary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v3/drdocbench-validation-v3.zip">Validation package v3</a>
-          <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v3/drdocbench-test-v3.zip">Test package v3</a>
+          <a class="btn btn-primary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v4/drdocbench-evaluation-v4.zip">Evaluation package v4</a>
           <a class="btn btn-ghost" href="https://huggingface.co/datasets/2077AIDataFoundation/DrDocBench" target="_blank" rel="noopener">Reference benchmark</a>
         </div>
       </div>
@@ -159,7 +158,7 @@
             <div><dt>Overall</dt><dd>Mean of the per-page available-component averages; higher is better.</dd></div>
           </dl>
           <div class="tba-note"><strong>Overall formula:</strong> for each page, average only its available Text, Table, Formula, and Reading Order scores; then average the scorable page scores. Missing components are excluded, not assigned zero.</div>
-          <p><strong>Scorable-page audit.</strong> Public Validation v3 requires 1,005 page predictions: 962 are scorable and 43 are non-scorable. Private Test v3 requires 509 page predictions: 487 are scorable and 22 are non-scorable. A non-scorable page contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed and is excluded from every metric denominator.</p>
+          <p><strong>Scorable-page audit.</strong> Public Validation and Private Test both require the same 509 page predictions: 487 are scorable and 22 are non-scorable. A non-scorable page contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed and is excluded from every metric denominator.</p>
           <p><a class="btn btn-secondary" href="evaluator-specification.html">Read the evaluator specification</a> <a class="btn btn-ghost" href="examples/scoring-example/">View scoring example</a></p>
         </article>
       </div>
@@ -169,13 +168,13 @@
       <div class="section-heading">
         <p class="section-kicker">Key milestones</p>
         <h2>Challenge timeline</h2>
-        <p>Final challenge dates will be announced soon.</p>
+        <p>The challenge is open from August 10 through October 10, 2026.</p>
       </div>
       <div class="timeline-grid">
-        <article class="timeline-card"><span>01</span><h3>Dataset release</h3><p>TBC</p></article>
-        <article class="timeline-card"><span>02</span><h3>Submissions open</h3><p>TBC</p></article>
-        <article class="timeline-card"><span>03</span><h3>Submission deadline</h3><p>TBC</p></article>
-        <article class="timeline-card"><span>04</span><h3>Final evaluation</h3><p>TBC</p></article>
+        <article class="timeline-card"><span>01</span><h3>Evaluation package</h3><p>Available</p></article>
+        <article class="timeline-card"><span>02</span><h3>Competition opens</h3><p>August 10, 2026</p></article>
+        <article class="timeline-card"><span>03</span><h3>Competition deadline</h3><p>October 10, 2026</p></article>
+        <article class="timeline-card"><span>04</span><h3>Final review</h3><p>After the deadline</p></article>
         <article class="timeline-card timeline-highlight"><span>05</span><h3>Results announced</h3><p>DocInsights 2026</p></article>
       </div>
     </section>
@@ -197,7 +196,7 @@
         <div class="platform-copy">
           <p class="section-kicker">Evaluation platform</p>
           <h2>EvalAI Evaluation Platform</h2>
-          <p>Submission and remote evaluation are hosted on EvalAI. The challenge is currently unpublished while the final release is reviewed.</p>
+          <p>Submission and remote evaluation are hosted on EvalAI. The competition runs from August 10 through October 10, 2026.</p>
         </div>
         <a class="btn btn-primary" href="https://eval.ai/web/challenges/challenge-page/2717/overview" target="_blank" rel="noopener">Open EvalAI</a>
       </div>
@@ -207,13 +206,13 @@
       <div class="section-heading">
         <p class="section-kicker">How it works</p>
         <h2>Participation flow</h2>
-        <p>The challenge follows a public development, validation, held-out evaluation, and workshop-results workflow.</p>
+        <p>Both EvalAI phases use the same 509-page evaluation set. Public Validation supports visible iterative evaluation, while Private Test keeps results hidden.</p>
       </div>
       <ol class="flow-list">
-        <li><span>1</span><div><h3>Phase package</h3><p>Download the versioned image-only package and exact page manifest for the selected EvalAI phase.</p></div></li>
+        <li><span>1</span><div><h3>Evaluation package</h3><p>Download the shared image-only package and exact 509-page manifest.</p></div></li>
         <li><span>2</span><div><h3>EvalAI submission</h3><p>Teams upload structured predictions on EvalAI.</p></div></li>
         <li><span>3</span><div><h3>Public validation</h3><p>EvalAI will provide a public validation leaderboard.</p></div></li>
-        <li><span>4</span><div><h3>Held-out evaluation</h3><p>Final rankings will be determined on held-out data.</p></div></li>
+        <li><span>4</span><div><h3>Private Test</h3><p>Use the same submission contract for a hidden result. This phase is not a separate held-out dataset.</p></div></li>
         <li><span>5</span><div><h3>Results workshop</h3><p>Results will be announced at DocInsights 2026.</p></div></li>
       </ol>
     </section>
@@ -247,7 +246,7 @@
             <li><span>Ready</span> SHA-256 checksums</li>
           </ul>
           <div class="disabled-actions">
-            <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases">Download phase packages</a>
+            <a class="btn btn-secondary" href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v4/drdocbench-evaluation-v4.zip">Download evaluation package</a>
             <a class="btn btn-primary" href="https://eval.ai/web/challenges/challenge-page/2717/submit" target="_blank" rel="noopener">Submit on EvalAI</a>
           </div>
         </article>
@@ -258,7 +257,7 @@
       <div class="section-heading">
         <p class="section-kicker">Results</p>
         <h2>Leaderboard</h2>
-        <p>Results will be updated periodically from successful public EvalAI submissions. The leaderboard will retain each team's best eligible public submission. Final rankings will be determined through held-out evaluation.</p>
+        <p>Results will be updated from successful Public Validation submissions, and the leaderboard will retain each team's best eligible public submission. Private Test uses the same evaluation data but keeps results hidden.</p>
       </div>
       <div class="leaderboard-stack">
         <article class="leaderboard-card">
@@ -278,11 +277,11 @@
       <div class="section-heading">
         <p class="section-kicker">Rules</p>
         <h2>Participation Rules</h2>
-        <p>Core participation requirements are listed below. Submission limits and final-evaluation rules will be published with the EvalAI challenge.</p>
+        <p>Core participation requirements are listed below. The competition is open from August 10 through October 10, 2026; phase-specific submission limits are displayed on EvalAI.</p>
       </div>
       <div class="rule-grid">
         <article><h3>Eligibility</h3><p>Open to researchers and teams worldwide.</p></article>
-        <article><h3>Submissions</h3><p>Submission limits and final-evaluation rules will be published with the EvalAI challenge.</p></article>
+        <article><h3>Submissions</h3><p>Both phases use the same 509-page package. Public scores are visible; Private Test scores remain hidden.</p></article>
         <article><h3>Requirements</h3><p>Top-ranked teams must submit a technical report. External data must be disclosed.</p></article>
       </div>
     </section>
@@ -293,9 +292,9 @@
         <h2>Frequently Asked Questions</h2>
       </div>
       <div class="faq-list">
-        <details><summary>Which data should I use for EvalAI?</summary><p>Use the versioned Validation or Test participant package linked on this page. The labeled Hugging Face benchmark is a reference release, not a phase input package.</p></details>
+        <details><summary>Which data should I use for EvalAI?</summary><p>Use the shared evaluation participant package v4 for both Public Validation and Private Test. The labeled Hugging Face benchmark is a reference release, not a phase input package.</p></details>
         <details><summary>Where will submissions be evaluated?</summary><p>Submissions are evaluated by the remote Dr.DocBench worker through EvalAI challenge 2717.</p></details>
-        <details><summary>How is Overall computed?</summary><p>Each page averages its available 0-100 component scores. Overall is the mean over scorable pages. Missing components are excluded from the denominator. Public Validation has 43 non-scorable pages and Private Test has 22; those pages remain required when their input image is released but do not affect scores.</p></details>
+        <details><summary>How is Overall computed?</summary><p>Each page averages its available 0-100 component scores. Overall is the mean over scorable pages. Missing components are excluded from the denominator. The shared 509-page set has 22 non-scorable pages; they remain required but do not affect scores.</p></details>
         <details><summary>What must top-ranked teams provide?</summary><p>A technical report is required, and all external data must be disclosed.</p></details>
       </div>
     </section>
@@ -338,7 +337,7 @@
         <h3>Resources</h3>
         <ul>
           <li><a href="https://drdocbench-challenge.abaka-pages.com/">Official challenge website</a></li>
-          <li><a href="https://github.com/AaronLuo00/drdocbench-challenge/releases">Participant packages</a></li>
+          <li><a href="https://github.com/AaronLuo00/drdocbench-challenge/releases/download/participant-data-v4/drdocbench-evaluation-v4.zip">Evaluation package v4</a></li>
           <li><a href="https://huggingface.co/datasets/2077AIDataFoundation/DrDocBench">Reference benchmark</a></li>
           <li>Contact: TBA</li>
         </ul>
