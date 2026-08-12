@@ -114,8 +114,11 @@
 
         /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
-            .grid-bg, .particle, .scanline { animation: none; }
+            .grid-bg, .particle, .scanline, .hero-folder-visual, .hero-folder-object,
+            .parse-document, .parse-card, .parse-connector, .parse-node { animation: none; }
+            .music-note { animation: none; }
             .hero h1, .hero-tagline, .hero-desc, .countdown, .btn-group, .hero-resources { animation: none; opacity: 1; }
+            .hero-folder-visual { opacity: .72; transform: translateY(-50%); }
             * { transition-duration: 0.01ms !important; }
         }
 
@@ -356,6 +359,123 @@
             z-index: 1;
             width: 100%;
             max-width: 80rem;
+        }
+
+        .hero-folder-visual {
+            position: absolute;
+            z-index: 0;
+            top: 53%;
+            right: clamp(6rem, 8vw, 13rem);
+            width: clamp(40rem, 39vw, 62rem);
+            aspect-ratio: 1;
+            pointer-events: none;
+            opacity: 0;
+            animation: folderReveal 1.1s cubic-bezier(.2, .8, .2, 1) .35s forwards;
+        }
+
+        .hero-folder-visual::after {
+            content: '';
+            position: absolute;
+            inset: 17% 12% 12%;
+            z-index: -1;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(224, 90, 43, .1), transparent 70%);
+            filter: blur(32px);
+        }
+
+        .hero-folder-object {
+            display: block;
+            width: 100%;
+            height: 100%;
+            animation: folderFloat 7s ease-in-out infinite;
+            transform-origin: 54% 55%;
+            overflow: visible;
+            filter: drop-shadow(0 28px 58px rgba(0, 0, 0, .58));
+        }
+
+        .parse-document {
+            animation: documentBreathe 5.8s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .parse-card {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: cardDrift 5.6s ease-in-out infinite;
+        }
+
+        .parse-card-2 { animation-delay: -.9s; }
+        .parse-card-3 { animation-delay: -1.8s; }
+        .parse-card-4 { animation-delay: -2.7s; }
+
+        .parse-connector {
+            stroke-dasharray: 4 9;
+            animation: connectorFlow 2.4s linear infinite;
+        }
+
+        .parse-node {
+            animation: nodePulse 2.4s ease-in-out infinite;
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+
+        .music-note {
+            fill: #211d1b;
+            stroke: #211d1b;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: noteIlluminate 3.6s ease-in-out infinite;
+        }
+
+        .music-note-2 { animation-delay: 1.2s; }
+        .music-note-3 { animation-delay: 2.4s; }
+
+        @keyframes folderReveal {
+            from { opacity: 0; transform: translate3d(36px, -44%, 0) scale(.94); }
+            to { opacity: 1; transform: translate3d(0, -50%, 0) scale(1); }
+        }
+
+        @keyframes folderFloat {
+            0%, 100% { transform: translate3d(0, -6px, 0); }
+            50% { transform: translate3d(0, 8px, 0); }
+        }
+
+        @keyframes documentBreathe {
+            0%, 100% { filter: drop-shadow(0 0 12px rgba(224, 90, 43, .08)); }
+            50% { filter: drop-shadow(0 0 24px rgba(224, 90, 43, .2)); }
+        }
+
+        @keyframes cardDrift {
+            0%, 100% { transform: translateY(-2px); }
+            50% { transform: translateY(5px); }
+        }
+
+        @keyframes connectorFlow { to { stroke-dashoffset: -26; } }
+
+        @keyframes nodePulse {
+            0%, 100% { opacity: .45; transform: scale(.8); }
+            50% { opacity: 1; transform: scale(1.25); }
+        }
+
+        @keyframes noteIlluminate {
+            0%, 18%, 100% {
+                fill: #211d1b;
+                stroke: #211d1b;
+                filter: drop-shadow(0 0 0 rgba(239, 107, 69, 0));
+                transform: translateY(0) scale(1);
+            }
+            30%, 48% {
+                fill: #ff7146;
+                stroke: #ff7146;
+                filter: drop-shadow(0 0 7px rgba(255, 113, 70, .72));
+                transform: translateY(-2px) scale(1.06);
+            }
+            62% {
+                fill: #211d1b;
+                stroke: #211d1b;
+                filter: drop-shadow(0 0 0 rgba(239, 107, 69, 0));
+                transform: translateY(0) scale(1);
+            }
         }
 
         .hero-sponsor {
@@ -622,6 +742,7 @@
         section {
             padding: 8rem 0;
             border-top: 1px solid var(--border);
+            scroll-margin-top: 8rem;
         }
 
         #overview { border-top: none; }
@@ -997,7 +1118,8 @@
             gap: 2.4rem;
         }
 
-        .rules-grid > div {
+        .rules-grid > div,
+        .rules-grid > article {
             padding: 2rem;
             border: 1px solid var(--border);
             background: var(--bg-card);
@@ -1005,7 +1127,9 @@
         }
 
         .rules-grid > div:hover,
-        .rules-grid > div:focus-within {
+        .rules-grid > div:focus-within,
+        .rules-grid > article:hover,
+        .rules-grid > article:focus-within {
             border-color: var(--accent);
             transform: translateY(-4px);
         }
@@ -1020,6 +1144,29 @@
         .rules-grid p {
             font-size: 1.4rem;
             color: var(--text-secondary);
+        }
+
+        .evaluation-grid {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .evaluation-grid > div {
+            min-width: 0;
+            padding: 2rem 1.6rem;
+        }
+
+        .evaluation-grid h4 {
+            font-size: 1.35rem;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 1050px) {
+            .evaluation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 620px) {
+            .evaluation-grid { grid-template-columns: 1fr; }
         }
 
         /* Footer */
@@ -1072,6 +1219,15 @@
         }
 
         /* Responsive */
+        @media (max-width: 1180px) {
+            .hero-folder-visual {
+                right: -8rem;
+                width: clamp(38rem, 44vw, 56rem);
+                opacity: .5;
+            }
+            .hero-content { max-width: 72rem; }
+        }
+
         @media (max-width: 900px) {
             html { font-size: 9px; }
             header { padding: 0 2rem; }
@@ -1090,6 +1246,12 @@
             .footer-links { justify-content: center; }
             .hero-sponsor { align-items: flex-start; margin-bottom: 2.6rem; }
             .hero-content { width: 100%; }
+            .hero-folder-visual {
+                top: 44%;
+                right: -21rem;
+                width: 58rem;
+                opacity: .2;
+            }
         }
     </style>
 </head>
@@ -1118,8 +1280,8 @@
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#task">Task</a></li>
                 <li><a href="#timeline">Timeline</a></li>
-                <li><a href="#leaderboard">Leaderboard</a></li>
-                <li><a href="#submit" class="highlight">Submit</a></li>
+                <li><a href="#data">Data</a></li>
+                <li><a href="https://eval.ai/web/challenges/challenge-page/2717/overview" class="highlight" target="_blank" rel="noopener">Submit</a></li>
             </ul>
         </nav>
 
@@ -1134,12 +1296,74 @@
             <li><a href="#overview">Overview</a></li>
             <li><a href="#task">Challenge Task</a></li>
             <li><a href="#timeline">Timeline</a></li>
-            <li><a href="#leaderboard">Leaderboard</a></li>
-            <li><a href="#submit" class="highlight">Submit</a></li>
+            <li><a href="#data">Data</a></li>
+            <li><a href="https://eval.ai/web/challenges/challenge-page/2717/overview" class="highlight" target="_blank" rel="noopener">Submit</a></li>
         </ul>
     </nav>
 
     <section class="hero">
+        <div class="hero-folder-visual" aria-hidden="true">
+            <svg class="hero-folder-object" viewBox="0 0 700 700" role="presentation">
+                <defs>
+                    <linearGradient id="paperFill" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#ffffff"/>
+                        <stop offset="1" stop-color="#f3eee8"/>
+                    </linearGradient>
+                    <filter id="paperShadow" x="-30%" y="-30%" width="160%" height="180%">
+                        <feDropShadow dx="0" dy="15" stdDeviation="13" flood-color="#000" flood-opacity=".36"/>
+                    </filter>
+                </defs>
+
+                <g class="parse-document" filter="url(#paperShadow)">
+                    <rect x="54" y="70" width="300" height="554" rx="23" fill="url(#paperFill)"/>
+                    <rect x="83" y="104" width="58" height="62" rx="10" fill="#f3ddd5"/>
+                    <g stroke="#bdb8b3" stroke-width="8" stroke-linecap="round" opacity=".83">
+                        <path d="M165 115h115"/><path d="M165 143h82"/>
+                        <path d="M84 202h233"/><path d="M84 229h233"/><path d="M84 256h191"/>
+                        <path d="M84 389h233"/><path d="M84 416h208"/><path d="M84 443h154"/>
+                        <path d="M84 506h233"/><path d="M84 533h203"/><path d="M84 560h225"/><path d="M84 587h174"/>
+                    </g>
+                    <rect x="84" y="292" width="110" height="72" rx="11" fill="#e8e3dd"/>
+                    <rect x="211" y="292" width="106" height="31" rx="9" fill="#ebe7e2"/>
+                    <rect x="211" y="333" width="106" height="31" rx="9" fill="#f4dcd3"/>
+                    <rect x="84" y="474" width="233" height="15" rx="7" fill="#e7e1da"/>
+                </g>
+
+                <g fill="none" stroke="#e05a2b" stroke-width="2.4" opacity=".82">
+                    <path class="parse-connector" d="M364 147H404"/>
+                    <path class="parse-connector" d="M364 277H404"/>
+                    <path class="parse-connector" d="M364 407H404"/>
+                    <path class="parse-connector" d="M364 537H404"/>
+                </g>
+                <g fill="#ff7146">
+                    <circle class="parse-node" cx="364" cy="147" r="4"/><circle class="parse-node" cx="404" cy="147" r="4"/>
+                    <circle class="parse-node" cx="364" cy="277" r="4"/><circle class="parse-node" cx="404" cy="277" r="4"/>
+                    <circle class="parse-node" cx="364" cy="407" r="4"/><circle class="parse-node" cx="404" cy="407" r="4"/>
+                    <circle class="parse-node" cx="364" cy="537" r="4"/><circle class="parse-node" cx="404" cy="537" r="4"/>
+                </g>
+
+                <g class="parse-card parse-card-1" filter="url(#paperShadow)">
+                    <rect x="414" y="91" width="232" height="112" rx="20" fill="url(#paperFill)"/>
+                    <g stroke="#aaa49e" stroke-width="7" stroke-linecap="round"><path d="M462 123h137"/><path d="M462 147h112"/><path d="M462 171h88"/></g>
+                    <g fill="#f0643c"><circle cx="438" cy="123" r="6"/><circle cx="438" cy="147" r="6"/><circle cx="438" cy="171" r="6"/></g>
+                </g>
+                <g class="parse-card parse-card-2" filter="url(#paperShadow)">
+                    <rect x="414" y="221" width="232" height="112" rx="20" fill="url(#paperFill)"/>
+                    <g fill="none" stroke="#ee6640" stroke-width="2.5"><rect x="447" y="246" width="166" height="61"/><path d="M488 246v61M530 246v61M571 246v61M447 276h166"/></g>
+                </g>
+                <g class="parse-card parse-card-3" filter="url(#paperShadow)">
+                    <rect x="414" y="351" width="232" height="112" rx="20" fill="url(#paperFill)"/>
+                    <text x="530" y="420" text-anchor="middle" fill="#3f3a37" font-family="Georgia, serif" font-size="31" font-style="italic">∫ₐᵇ f(x) dx</text>
+                </g>
+                <g class="parse-card parse-card-4" filter="url(#paperShadow)">
+                    <rect x="414" y="481" width="232" height="112" rx="20" fill="url(#paperFill)"/>
+                    <g fill="none" stroke="#ef6b45" stroke-width="2"><path d="M445 514h169M445 529h169M445 544h169M445 559h169M445 574h169"/></g>
+                    <g class="music-note music-note-1" stroke-width="3"><circle cx="476" cy="558" r="8"/><path d="M484 558v-49"/></g>
+                    <g class="music-note music-note-2" stroke-width="3"><circle cx="527" cy="543" r="8"/><path d="M535 543v-49"/></g>
+                    <g class="music-note music-note-3" stroke-width="3"><circle cx="579" cy="558" r="8"/><path d="M587 558v-57"/></g>
+                </g>
+            </svg>
+        </div>
         <div class="hero-content">
             <div class="hero-sponsor">
                 <span class="hero-sponsor-label">Sponsored and organized by</span>
@@ -1151,11 +1375,11 @@
             <p class="hero-tagline">Expert-Level Document Parsing Challenge</p>
             <p class="hero-desc">Recover structured content from the document pages that challenge today’s strongest parsers—across text, tables, formulas, reading order, and specialized notation.</p>
             <div class="info-box" style="max-width: 72rem; margin: 3.2rem 0; padding: 1.8rem 2.2rem;">
-                <p><strong>EMNLP 2026</strong> · DocInsights 2026 Workshop · Dates to be announced</p>
+                <p><strong>Competition:</strong> August 10–October 10, 2026 · Winners announced at DocInsights 2026</p>
             </div>
             <div class="btn-group">
-                <a href="#task" class="btn-2077">Explore the Task</a>
-                <a href="#data" class="btn-2077 btn-outline">Dataset Details</a>
+                <a href="https://eval.ai/web/challenges/challenge-page/2717/overview" class="btn-2077" target="_blank" rel="noopener">Submit</a>
+                <a href="https://huggingface.co/datasets/2077AIDataFoundation/DrDocBench" class="btn-2077 btn-outline" target="_blank" rel="noopener">Download Challenge Data</a>
             </div>
             <div class="hero-resources" aria-label="Related resources">
                 <span class="hero-resources-label">Learn more</span>
@@ -1168,8 +1392,7 @@
     <main id="main-content">
         <section id="overview" class="animate-on-scroll">
             <h2 class="section-title">Overview</h2>
-            <p style="max-width: 80rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem; margin-bottom: 2.4rem;">The Dr.DocBench Challenge focuses on expert-level document parsing at the intersection of document recognition, layout understanding, and structured extraction. Based on <a href="https://arxiv.org/html/2606.01393v1" style="color: var(--accent);" target="_blank" rel="noopener">Dr.DocBench</a>, it uses difficulty-aware data selected around cases where strong document parsers struggle.</p>
-            <p style="max-width: 80rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem;">Participants will recover structured content from complex document pages, including text, tables, formulas, reading order, and specialized notation. The challenge is part of the <a href="https://docinsights-workshop.github.io/docinsights-2026/" style="color: var(--accent);" target="_blank" rel="noopener"><strong>DocInsights 2026 workshop at EMNLP 2026</strong></a>.</p>
+            <p style="max-width: 88rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem;">The Dr.DocBench Challenge evaluates expert-level document parsing on pages where strong systems still struggle. It is based on <a href="https://arxiv.org/abs/2606.01393" style="color: var(--accent);" target="_blank" rel="noopener">Dr.DocBench</a>, a difficulty-aware benchmark developed by 2077AI and research collaborators, and is part of the <a href="https://docinsights-workshop.github.io/docinsights-2026/" style="color: var(--accent);" target="_blank" rel="noopener"><strong>DocInsights 2026 workshop at EMNLP 2026</strong></a>.</p>
         </section>
 
         <section id="task" class="animate-on-scroll">
@@ -1184,20 +1407,19 @@
                     <span class="metric-tag">Reading order</span>
                     <span class="metric-tag">Document structure</span>
                     <span class="metric-tag">Chemistry notation</span>
-                    <span class="metric-tag">Musical notation</span>
+                    <span class="metric-tag">Musical notation (exploratory content)</span>
                 </div>
+                <p style="margin-top: 2.4rem; color: var(--text-muted);">Musical notation appears in the challenge data as exploratory content. It does not receive a separate EvalAI metric.</p>
             </article>
         </section>
 
         <section id="timeline" class="animate-on-scroll">
             <h2 class="section-title">Timeline</h2>
-            <div class="info-box" style="margin-bottom: 3.2rem;"><p>Final dates will be announced soon.</p></div>
             <div class="timeline">
-                <div class="timeline-item"><div class="timeline-date">TBC</div><div class="timeline-event">Dataset release</div></div>
-                <div class="timeline-item"><div class="timeline-date">TBC</div><div class="timeline-event">Submissions open</div></div>
-                <div class="timeline-item"><div class="timeline-date">TBC</div><div class="timeline-event">Submission deadline</div></div>
-                <div class="timeline-item"><div class="timeline-date">TBC</div><div class="timeline-event">Final evaluation</div></div>
-                <div class="timeline-item current"><div class="timeline-date">DocInsights 2026</div><div class="timeline-event">Results announced</div></div>
+                <div class="timeline-item current"><div class="timeline-date">August 10, 2026</div><div class="timeline-event">Competition opens</div></div>
+                <div class="timeline-item"><div class="timeline-date">October 10, 2026 · 12:59 PM UTC</div><div class="timeline-event">Submission deadline</div></div>
+                <div class="timeline-item"><div class="timeline-date">October 11–23, 2026</div><div class="timeline-event">Final evaluation period</div></div>
+                <div class="timeline-item"><div class="timeline-date">DocInsights 2026</div><div class="timeline-event">Winners announced at the workshop</div></div>
             </div>
         </section>
 
@@ -1212,8 +1434,8 @@
         <section id="leaderboard" class="animate-on-scroll">
             <h2 class="section-title">Leaderboard</h2>
             <div class="info-box" style="margin-bottom: 3.2rem;">
-                <p>Results will be updated periodically from successful public EvalAI submissions. The leaderboard will retain each team’s best eligible public submission. Final rankings will be determined through the held-out evaluation phase.</p>
-                <p style="margin-top: 1rem; color: var(--text-muted);">Proposed metrics are shown below. Final columns will be confirmed with the evaluator.</p>
+                <p>Public EvalAI results will be updated periodically during the competition. Official final rankings will be determined through the Private Test phase.</p>
+                <p style="margin-top: 1rem; color: var(--text-muted);">Ranking is descending by Overall under the official EvalAI scoring contract.</p>
             </div>
             <div class="leaderboard-card">
                 <div class="leaderboard-header"><h3>Expert-Level Document Parsing</h3></div>
@@ -1226,21 +1448,29 @@
 
         <section id="data" class="animate-on-scroll">
             <h2 class="section-title">Dataset</h2>
-            <div class="info-box">
-                <p>The challenge uses a dedicated subset of <strong>Dr.DocBench</strong> prepared for expert-level document parsing. Public development data will be released through Hugging Face.</p>
-                <p style="margin-top: 1.2rem;">The dataset link, documentation, and final release details will be added when available.</p>
+            <div class="rules-grid">
+                <article>
+                    <h4>Challenge Data</h4>
+                    <p>The public Dr.DocBench dataset and annotations are available on Hugging Face for development and format reference.</p>
+                    <div style="margin-top: 2rem;"><a class="btn-2077 btn-outline" href="https://huggingface.co/datasets/2077AIDataFoundation/DrDocBench" target="_blank" rel="noopener">Open on Hugging Face</a></div>
+                </article>
+                <article>
+                    <h4>Competition Evaluation</h4>
+                    <p>Official evaluation inputs, sample submissions, and validation tools are provided through the Dr.DocBench EvalAI challenge.</p>
+                    <div style="margin-top: 2rem;"><a class="btn-2077 btn-outline" href="https://eval.ai/web/challenges/challenge-page/2717/overview" target="_blank" rel="noopener">Open EvalAI Challenge</a></div>
+                </article>
             </div>
         </section>
 
         <section id="evaluation" class="animate-on-scroll">
             <h2 class="section-title">Evaluation</h2>
-            <p style="max-width: 80rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem; margin-bottom: 3.2rem;">Submissions will be evaluated using document-parsing metrics aligned with Dr.DocBench. The final metric set and aggregation formula will be published with the evaluator.</p>
-            <div class="rules-grid">
-                <div><h4>Text Edit Distance</h4><p>Measures text-recognition accuracy. Lower is better.</p></div>
-                <div><h4>Table TEDS</h4><p>Measures table structure and content similarity. Higher is better.</p></div>
-                <div><h4>Formula CDM</h4><p>Measures mathematical-formula recognition. Higher is better.</p></div>
-                <div><h4>Reading Order</h4><p>Measures whether document elements appear in the correct sequence. Higher is better.</p></div>
-                <div><h4>Overall</h4><p>Combines the evaluation metrics to determine the ranking.</p></div>
+            <p style="max-width: 88rem; font-size: 1.6rem; color: var(--text-secondary); line-height: 2.8rem; margin-bottom: 3.2rem;">Submissions are evaluated using four component metrics plus one Overall aggregate. Final rankings are determined by the Overall score.</p>
+            <div class="rules-grid evaluation-grid">
+                <div><h4>Text Edit Distance</h4><p>Normalized Levenshtein distance over scored text categories, from 0–1. Lower is better.</p></div>
+                <div><h4>Table TEDS</h4><p>Mean tree-edit-distance similarity for valid tables, shown on a 0–100 scale. Higher is better.</p></div>
+                <div><h4>Formula CDM</h4><p>Mean CDM F1 for isolated display formulas, shown on a 0–100 scale. Higher is better.</p></div>
+                <div><h4>Reading Order</h4><p>(1 − normalized reading-order edit distance) × 100. Higher is better.</p></div>
+                <div><h4>Overall</h4><p>Available component scores are converted to a 0–100 scale and averaged for each scorable page, then averaged across all scorable pages. Missing components are excluded from the page denominator rather than scored as zero; non-scorable pages are excluded.</p></div>
             </div>
         </section>
 
@@ -1248,13 +1478,18 @@
             <h2 class="section-title">Submission</h2>
             <div class="submit-grid">
                 <div class="submit-card">
-                    <h3>Structured Predictions</h3>
-                    <p style="font-size: 1.4rem; color: var(--text-secondary); line-height: 2.4rem;">Participants will upload structured predictions for the document images in the evaluation set. The complete archive structure, file-naming requirements, Markdown specification, validation rules, and sample submission will be published before submissions open.</p>
+                    <h3>1. Prepare</h3>
+                    <p style="font-size: 1.4rem; color: var(--text-secondary); line-height: 2.4rem; margin-bottom: 2rem;">Download the relevant evaluation package and generate one prediction for every released page identifier. The challenge uses a single-page prediction unit, unlike the default two-page window setting described in the Dr.DocBench paper.</p>
+                    <div class="code-block">submission.zip
+└── predictions.jsonl
+    └── required fields: subject, document_id, page, markdown</div>
+                    <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 2rem; margin-top: 1.6rem;">The evaluator applies strict checks for missing, extra, or duplicate predictions and invalid identifiers or submission structure.</p>
+                    <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 2rem; margin-top: 1.6rem;">A canonical <strong>mds/</strong> Markdown tree mirroring the released hierarchy is also accepted.</p>
                 </div>
                 <div class="submit-card">
-                    <h3>EvalAI</h3>
-                    <p style="font-size: 1.4rem; color: var(--text-secondary); line-height: 2.4rem;">Submission platform: EvalAI. Challenge portal and sample submission links are coming soon.</p>
-                    <div style="margin-top: 2.4rem;"><span class="btn-2077 btn-outline" aria-disabled="true">Portal Coming Soon</span></div>
+                    <h3>2. Submit</h3>
+                    <p style="font-size: 1.4rem; color: var(--text-secondary); line-height: 2.4rem;">Upload the validated ZIP through EvalAI. Final rankings will be determined through the Private Test phase.</p>
+                    <div style="margin-top: 2.4rem;"><a class="btn-2077 btn-outline" href="https://eval.ai/web/challenges/challenge-page/2717/overview" target="_blank" rel="noopener">Open EvalAI Challenge</a></div>
                 </div>
             </div>
         </section>
@@ -1262,16 +1497,16 @@
         <section id="rules" class="animate-on-scroll">
             <h2 class="section-title">Rules</h2>
             <div class="rules-grid">
-                <div><h4>Eligibility</h4><p>Open to researchers and teams worldwide.</p></div>
-                <div><h4>Submissions</h4><p>Submission limits and final-evaluation rules will be published with the EvalAI challenge.</p></div>
-                <div><h4>Requirements</h4><p>Top-ranked teams must submit a technical report. External data must be disclosed.</p></div>
+                <div><h4>Eligibility</h4><p>Open to researchers and teams worldwide. There is no team-size limit.</p></div>
+                <div><h4>Submissions</h4><p>Maximum three submissions per day. Each team may select up to two submissions for final evaluation.</p></div>
+                <div><h4>Requirements</h4><p>Top-ranked teams must submit a technical report. All external data, models, and resources must be disclosed.</p></div>
             </div>
         </section>
     </main>
 
     <footer role="contentinfo">
-        <p>Dr. DocBench Challenge @ EMNLP 2026</p>
-        <div class="footer-links"><a href="#overview">Challenge</a><a href="#rules">Rules</a></div>
+        <p>Dr.DocBench Challenge @ EMNLP 2026</p>
+        <div class="footer-links"><a href="#overview">Challenge</a><a href="mailto:docinsights-workshop-chairs@googlegroups.com">Contact the Committee</a></div>
         <a href="https://www.abaka.ai/" target="_blank" rel="noopener" aria-label="Visit Abaka AI">
             <img src="assets/abaka-ai-logo.svg" alt="Abaka AI" style="display:block; width:12rem; height:auto;">
         </a>
