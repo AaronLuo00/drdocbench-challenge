@@ -1434,7 +1434,7 @@
         <section id="leaderboard" class="animate-on-scroll">
             <h2 class="section-title">Leaderboard</h2>
             <div class="info-box" style="margin-bottom: 3.2rem;">
-                <p>Public EvalAI results will be updated periodically during the competition. Official final rankings will be determined through the Private Test phase.</p>
+                <p>Public EvalAI results will be updated periodically during the competition. Official final rankings are determined from eligible Public Validation submissions.</p>
                 <p style="margin-top: 1rem; color: var(--text-muted);">Ranking is descending by Overall under the official EvalAI scoring contract.</p>
             </div>
             <div class="leaderboard-card">
@@ -1468,9 +1468,11 @@
             <div class="rules-grid evaluation-grid">
                 <div><h4>Text Edit Distance</h4><p>Normalized Levenshtein distance over scored text categories, from 0–1. Lower is better.</p></div>
                 <div><h4>Table TEDS</h4><p>Mean tree-edit-distance similarity for valid tables, shown on a 0–100 scale. Higher is better.</p></div>
-                <div><h4>Formula CDM</h4><p>Mean CDM F1 for isolated display formulas, shown on a 0–100 scale. Higher is better.</p></div>
+                <div><h4>Formula CDM</h4><p>Mean CDM F1 for isolated display-math formulas only, shown on a 0–100 scale. Higher is better. Inline formulas and chemistry notation are evaluated as text rather than by Formula CDM.</p></div>
                 <div><h4>Reading Order</h4><p>(1 − normalized reading-order edit distance) × 100. Higher is better.</p></div>
                 <div><h4>Overall</h4><p>Available component scores are converted to a 0–100 scale and averaged for each scorable page, then averaged across all scorable pages. Missing components are excluded from the page denominator rather than scored as zero; non-scorable pages are excluded.</p></div>
+                <div><h4>Chemistry Notation</h4><p>Chemical expressions written with <code>\ce{...}</code> and molecular structures in fenced <code>smiles</code> blocks follow the dataset convention. They are compared as normalized text under Text Edit Distance, not rendered or string-matched by Formula CDM.</p></div>
+                <div><h4>Detailed Scoring Records</h4><p>Detailed page-level scoring records are retained on the evaluation server for organizer review. During the active competition, participants receive aggregate metrics, stdout, and stderr; per-page scores are not released.</p></div>
             </div>
         </section>
 
@@ -1485,10 +1487,11 @@
     └── required fields: subject, document_id, page, markdown</div>
                     <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 2rem; margin-top: 1.6rem;">The evaluator applies strict checks for missing, extra, or duplicate predictions and invalid identifiers or submission structure.</p>
                     <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 2rem; margin-top: 1.6rem;">A canonical <strong>mds/</strong> Markdown tree mirroring the released hierarchy is also accepted.</p>
+                    <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 2rem; margin-top: 1.6rem;">For chemistry, preserve reactions as <code>\ce{...}</code> and structures in fenced <code>smiles</code> blocks. These expressions are evaluated with normalized Text Edit Distance and are not Formula CDM components.</p>
                 </div>
                 <div class="submit-card">
                     <h3>2. Submit</h3>
-                    <p style="font-size: 1.4rem; color: var(--text-secondary); line-height: 2.4rem;">Upload the validated ZIP through EvalAI. Final rankings will be determined through the Private Test phase.</p>
+                    <p style="font-size: 1.4rem; color: var(--text-secondary); line-height: 2.4rem;">Upload the validated ZIP to the Public Validation phase on EvalAI. This is the only official participant-facing phase, and eligible submissions are ranked by Overall.</p>
                     <div style="margin-top: 2.4rem;"><a class="btn-2077 btn-outline" href="https://eval.ai/web/challenges/challenge-page/2717/overview" target="_blank" rel="noopener">Open EvalAI Challenge</a></div>
                 </div>
             </div>
@@ -1498,7 +1501,7 @@
             <h2 class="section-title">Rules</h2>
             <div class="rules-grid">
                 <div><h4>Eligibility</h4><p>Open to researchers and teams worldwide. There is no team-size limit.</p></div>
-                <div><h4>Submissions</h4><p>Maximum three submissions per day. Each team may select up to two submissions for final evaluation.</p></div>
+                <div><h4>Submissions</h4><p>Maximum three Public Validation submissions per day. Only the Public Validation phase is open to participants.</p></div>
                 <div><h4>Requirements</h4><p>Top-ranked teams must submit a technical report. All external data, models, and resources must be disclosed.</p></div>
             </div>
         </section>
