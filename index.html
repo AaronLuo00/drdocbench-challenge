@@ -153,12 +153,14 @@
           <dl class="metric-list">
             <div><dt>Text Edit Distance</dt><dd>Normalized Levenshtein distance over scored text elements, 0-1; lower is better.</dd></div>
             <div><dt>Table TEDS</dt><dd>Mean similarity over valid table samples, displayed on 0-100; higher is better.</dd></div>
-            <div><dt>Formula CDM</dt><dd>Mean CDM F1 over isolated display formulas, displayed on 0-100; higher is better.</dd></div>
+            <div><dt>Formula CDM</dt><dd>Mean CDM F1 over isolated display-math formulas, displayed on 0-100; higher is better. Inline formulas and chemistry notation are excluded.</dd></div>
             <div><dt>Reading Order</dt><dd><code>(1 - normalized reading-order edit distance) * 100</code>; higher is better.</dd></div>
             <div><dt>Overall</dt><dd>Mean of the per-page available-component averages; higher is better.</dd></div>
           </dl>
           <div class="tba-note"><strong>Overall formula:</strong> for each page, average only its available Text, Table, Formula, and Reading Order scores; then average the scorable page scores. Missing components are excluded, not assigned zero.</div>
           <p><strong>Scorable-page audit.</strong> Public Validation requires 509 page predictions: 487 are scorable and 22 are non-scorable. A non-scorable page contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed and is excluded from every metric denominator.</p>
+          <p><strong>Chemistry notation.</strong> Use <code>\ce{...}</code> for chemical expressions and <code>```smiles</code> fenced blocks for structures. The current evaluator scores both as normalized text under Text ED; they are not Formula components and do not contribute to Formula CDM.</p>
+          <p><strong>Detailed scoring records.</strong> The evaluation server retains per-page component scores and scoring-exclusion reasons for organizer-side review. Because Public Validation determines the official ranking, per-page scores are not released during the active competition.</p>
           <p><a class="btn btn-secondary" href="evaluator-specification.html">Read the evaluator specification</a> <a class="btn btn-ghost" href="examples/scoring-example/">View scoring example</a></p>
         </article>
       </div>
@@ -235,6 +237,7 @@
           <p>JSONL is also supported. Each line must contain <code>subject</code>, <code>document_id</code>, integer <code>page</code>, and string <code>markdown</code>.</p>
           <pre><code>{"subject":"CHEMISTRY","document_id":"...","page":1,"markdown":"Text\n\n$$E = mc^2$$"}</code></pre>
           <div class="tba-note"><strong>Formula delimiters:</strong> the evaluator accepts <code>$ ... $</code> or <code>\( ... \)</code> inline, and <code>$$ ... $$</code> or <code>\[ ... \]</code> for display formulas. Structured HTML table contents are preserved as submitted and compared by TEDS.</div>
+          <div class="tba-note"><strong>Chemistry notation:</strong> use <code>\ce{...}</code> for chemical expressions and <code>```smiles</code> fenced blocks for structures. Preserve these representations as documented; they are evaluated under normalized Text ED rather than Formula CDM.</div>
         </article>
         <article class="submission-card submission-status">
           <h3>Release checklist</h3>

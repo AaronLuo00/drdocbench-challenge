@@ -27,7 +27,7 @@
     <ul>
       <li><strong>Text ED:</strong> normalized Levenshtein distance over scored text categories, 0-1; lower is better.</li>
       <li><strong>Table TEDS:</strong> mean valid-table similarity, displayed on 0-100; higher is better.</li>
-      <li><strong>Formula CDM:</strong> mean isolated-formula CDM F1, displayed on 0-100; higher is better.</li>
+      <li><strong>Formula CDM:</strong> mean isolated display-math formula CDM F1, displayed on 0-100; higher is better. Inline formulas and chemistry notation are excluded.</li>
       <li><strong>Reading Order:</strong> <code>(1 - normalized edit distance) * 100</code>; higher is better.</li>
     </ul>
     <h2>Overall</h2>
@@ -39,10 +39,14 @@ Overall        = mean(PageOverall(p) for every scorable page p)</code></pre>
       <li><strong>Public Validation:</strong> 34 documents and 509 required page predictions; 487 are scorable and 22 are non-scorable.</li>
     </ul>
     <p>A non-scorable page contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed. It is required for structural completeness when an input image is released but does not affect any score. The shared evaluation set excludes one empty reference page for which no input image was provided.</p>
+    <h2>Detailed scoring records</h2>
+    <p>The evaluation server retains per-page component scores, scored and non-scorable pages, and exclusion reasons for organizer-side review. Because Public Validation determines the official ranking, per-page scores are not released to participants during the active competition. Participant-facing results contain aggregate leaderboard metrics, Stdout, and Stderr.</p>
     <p>Public Validation is the challenge's only official participant-facing phase. Eligible results may appear on the public leaderboard.</p>
     <p>The official evaluation unit is one page. The previous adjacent two-page-window design and its 474-window manifest are retired and are not used by this challenge.</p>
     <h2>Formula syntax</h2>
-    <p>The Markdown parser accepts <code>$ ... $</code> or <code>\( ... \)</code> inline, and <code>$$ ... $$</code> or <code>\[ ... \]</code> for display formulas. The current GT primarily uses dollar delimiters in text and Pandoc-style <code>\( ... \)</code> spans inside some structured HTML tables. Table cell contents are preserved as submitted and compared by TEDS.</p>
+    <p>The Markdown parser accepts <code>$ ... $</code> or <code>\( ... \)</code> inline, and <code>$$ ... $$</code> or <code>\[ ... \]</code> for display formulas. Formula CDM is computed only for isolated display-math formulas; inline formulas remain part of text evaluation. The current GT primarily uses dollar delimiters in text and Pandoc-style <code>\( ... \)</code> spans inside some structured HTML tables. Table cell contents are preserved as submitted and compared by TEDS.</p>
+    <h2>Chemistry notation</h2>
+    <p>Follow the Dr.DocBench dataset-card conventions: use <code>\ce{...}</code> for chemical expressions and <code>```smiles</code> fenced blocks for structures. The current evaluator scores both representations as normalized text under Text ED. They are not parsed as Formula components and are not rendered or compared by CDM.</p>
     <h2>Label-visible example</h2>
     <p>A fully synthetic example includes an input page, reference Markdown, two equivalent candidate predictions, and expected component and Overall scores. It contains no validation or test ground truth.</p>
     <p><a class="btn btn-secondary" href="examples/scoring-example/">Open the scoring example</a></p>
