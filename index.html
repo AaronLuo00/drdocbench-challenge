@@ -160,7 +160,7 @@
           <div class="tba-note"><strong>Overall formula:</strong> for each page, average only its available Text, Table, Formula, and Reading Order scores; then average the scorable page scores. Missing components are excluded, not assigned zero.</div>
           <p><strong>Scorable-page audit.</strong> Public Validation requires 509 page predictions: 487 are scorable and 22 are non-scorable. A non-scorable page contains no Text, Table, Formula, or Reading Order component after its reference Markdown is parsed and is excluded from every metric denominator.</p>
           <p><strong>Chemistry notation.</strong> Use <code>\ce{...}</code> for chemical expressions and <code>```smiles</code> fenced blocks for structures. The current evaluator scores both as normalized text under Text ED; they are not Formula components and do not contribute to Formula CDM.</p>
-          <p><strong>Detailed scoring records.</strong> The evaluation server retains per-page component scores and scoring-exclusion reasons for organizer-side review. Because Public Validation determines the official ranking, per-page scores are not released during the active competition.</p>
+          <p><strong>Detailed scoring records.</strong> The evaluation server retains per-page component scores and scoring-exclusion reasons for organizer-side review. Because Public Validation submissions are used for final ranking, subject to organizer-side review, per-page scores are not released during the active competition.</p>
           <p><a class="btn btn-secondary" href="evaluator-specification.html">Read the evaluator specification</a> <a class="btn btn-ghost" href="examples/scoring-example/">View scoring example</a></p>
         </article>
       </div>
@@ -213,8 +213,8 @@
       <ol class="flow-list">
         <li><span>1</span><div><h3>Evaluation package</h3><p>Download the shared image-only package and exact 509-page manifest.</p></div></li>
         <li><span>2</span><div><h3>EvalAI submission</h3><p>Teams upload structured predictions on EvalAI.</p></div></li>
-        <li><span>3</span><div><h3>Public validation</h3><p>EvalAI will provide a public validation leaderboard.</p></div></li>
-        <li><span>4</span><div><h3>Results workshop</h3><p>Results will be announced at DocInsights 2026.</p></div></li>
+        <li><span>3</span><div><h3>Public standings</h3><p>The EvalAI public leaderboard is authoritative for current provisional standings.</p></div></li>
+        <li><span>4</span><div><h3>Final review</h3><p>Organizer-side private validation runs October 11-23 before final results are confirmed.</p></div></li>
       </ol>
     </section>
 
@@ -259,20 +259,14 @@
       <div class="section-heading">
         <p class="section-kicker">Results</p>
         <h2>Leaderboard</h2>
-        <p>Results will be updated from successful Public Validation submissions, and the leaderboard will retain each team's best eligible public submission.</p>
+        <p>The <a href="https://eval.ai/web/challenges/challenge-page/2717/leaderboard/7035" target="_blank" rel="noopener">EvalAI public leaderboard</a> is the authoritative source for current provisional standings and retains each team's best eligible public submission. Website snapshots may be outdated or differ in submission visibility; they do not override EvalAI's public standings. A submission marked private is not publicly listed; this is a visibility setting, not a different evaluation phase.</p>
       </div>
-      <div class="leaderboard-stack">
-        <article class="leaderboard-card">
-          <div class="leaderboard-header"><div><span>Official task</span><h3>Expert-Level Document Parsing</h3></div><span class="status-badge status-muted">Coming soon</span></div>
-          <div class="table-scroll" tabindex="0" aria-label="Scrollable Document Parsing leaderboard">
-            <table>
-              <caption>Document Parsing leaderboard</caption>
-              <thead><tr><th>Rank</th><th>Team</th><th>Text ED</th><th>Table TEDS</th><th>Formula CDM</th><th>Reading Order</th><th>Overall</th></tr></thead>
-              <tbody><tr class="empty-row"><td colspan="7">Leaderboard opens with public EvalAI submissions.</td></tr></tbody>
-            </table>
-          </div>
-        </article>
-      </div>
+      <p><a class="btn btn-primary" href="https://eval.ai/web/challenges/challenge-page/2717/leaderboard/7035" target="_blank" rel="noopener">View current standings on EvalAI</a></p>
+      <h3>Final Ranking and Private Validation</h3>
+      <p>During October 11-23, 2026, organizers will conduct an internal private validation review before confirming final rankings. This review checks submission validity and compliance, including duplicated content and attempts to inflate scores by exploiting metric behavior rather than improving transcription.</p>
+      <p>Public Validation remains the only participant-facing phase. Final review uses predictions submitted through EvalAI and the same released 509-page evaluation set and hidden ground truth used for Public Validation scoring. There is no separate test dataset, additional prediction upload, or code/container submission required for this review. The same evaluation rules and review criteria apply to all teams.</p>
+      <p>For example, adding formula-wrapped copies alongside unchanged text solely to inflate scores is not faithful transcription. This is distinct from faithfully formatting content that appears once in the source.</p>
+      <p>This notice does not change the scoring formula. Any scoring correction adopted for final evaluation will be announced and applied consistently to all eligible final submissions. Current public standings remain provisional until the review is complete.</p>
     </section>
 
     <section id="rules">
@@ -283,7 +277,7 @@
       </div>
       <div class="rule-grid">
         <article><h3>Eligibility</h3><p>Open to researchers and teams worldwide.</p></article>
-        <article><h3>Submissions</h3><p>Public Validation is the only official phase and permits 3 submissions per day.</p></article>
+        <article><h3>Submissions</h3><p>Public Validation is the only participant-facing phase and permits 3 submissions per day. Final rankings are subject to organizer-side validity and compliance review.</p></article>
         <article><h3>Requirements</h3><p>Top-ranked teams must submit a technical report. External data must be disclosed.</p></article>
       </div>
     </section>
@@ -296,6 +290,8 @@
       <div class="faq-list">
         <details><summary>Which data should I use for EvalAI?</summary><p>Use evaluation participant package v4 for Public Validation. The labeled Hugging Face benchmark is a reference release, not the EvalAI phase input package.</p></details>
         <details><summary>Where will submissions be evaluated?</summary><p>Submissions are evaluated by the remote Dr.DocBench worker through EvalAI challenge 2717.</p></details>
+        <details><summary>Which leaderboard should I follow?</summary><p>Use the <a href="https://eval.ai/web/challenges/challenge-page/2717/leaderboard/7035" target="_blank" rel="noopener">EvalAI public leaderboard</a> for current provisional standings. A private visibility setting can hide a team's result without changing its evaluation phase.</p></details>
+        <details><summary>Does private validation require another test submission?</summary><p>No. It is an organizer-side review of existing EvalAI submissions on the same evaluation set, not a separate participant-facing phase. The review checks validity and rule compliance, including duplicated content and metric gaming, before final results are confirmed.</p></details>
         <details><summary>How is Overall computed?</summary><p>Each page averages its available 0-100 component scores. Overall is the mean over scorable pages. Missing components are excluded from the denominator. The shared 509-page set has 22 non-scorable pages; they remain required but do not affect scores.</p></details>
         <details><summary>What must top-ranked teams provide?</summary><p>A technical report is required, and all external data must be disclosed.</p></details>
       </div>
